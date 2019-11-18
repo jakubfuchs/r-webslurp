@@ -1,0 +1,100 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(httr)
+library(rvest)
+library(purrr)
+library(stringr)
+library(magrittr)
+library(dplyr)
+
+
+# Utils
+rm(list = ls())
+
+# update into closure function
+updatePriceInto <- function(table) {
+  function(name, date, price) {
+    tableNow <-  filter(table, table$origin==name)
+    origin <- name
+    dataNow <- data.frame(origin, date, price)
+    
+    if (date %in% tableNow$date) { 
+      currentPrices <- tableNow %>% filter(.,.$date==date) %>% .$price
+      if (price %in% currentPrices) {
+        print(paste("[Warrning] Zaznam jiz existuje:", date,">", price))
+        NULL
+      }
+    } else {
+      print(paste(date, "Nova cena", price))
+      dataNow
+    } 
+  } 
+}
+```
+
+```{r include=F}
+## init datalog
+## dataTable <- data.frame(matrix(nrow = 0,ncol = 3))
+## colnames(dataTable)=c("origin", "date", "price")
+```
+
+```{r include=F}
+## ADJUST by MISSING DATA 
+dataTable
+missingData <- data.frame(origin = "AXIGON",
+                          date = "2019-11-13",
+                          price = 25.53)
+dataTable %<>% rbind(.,missingData)
+dataTable
+
+```
+
+## AXIGON
+```{r}
+URL <- "https://www.axigon.cz"
+
+pg <- read_html(URL)
+
+# load datalog
+dataTable <- read.csv("data.csv")
+dataTable$X=NULL
+dataTable$date %<>% as.Date
+
+# slurp price form web
+price <- html_nodes(pg, "div.hero__remark") %>%
+  html_text %>%
+  str_extract(.,"\\d....") %>%
+  str_replace(.,"[,]","\\.") %>% 
+  as.double
+# get current date
+date <- Sys.Date() %>% as.Date
+
+# update and save
+priceUpdate <- updatePriceInto(dataTable)
+dataTable %<>% rbind(.,priceUpdate("AXIGON", date, price))
+dataTable %<>% .[rev(order(.$date)),]
+
+dataTable %>% write.csv(.,"data.csv")
+```
+
+## ERNEKS
+```{r}
+URL <- "http://www.erneks.cz/tankovaci-karta/shell-fix"
+pg <- read_html(URL)
+
+html_nodes(pg, "div.AREA_advantages")
+```
+
+
+## Tank ONO
+```{r}
+URL <- "http://www.tank-ono.cz/cz/index.php?page=cenik"
+pg <- read_html(URL)
+
+html_nodes(pg, "table.cenik")[2] %>% html_nodes(., "tr") %>% html_text %>% .[4]
+```
+
