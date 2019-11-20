@@ -38,8 +38,9 @@ updatePriceInto <- function(table) {
 
 ```{r include=F}
 ## init datalog
-## dataTable <- data.frame(matrix(nrow = 0,ncol = 3))
-## colnames(dataTable)=c("origin", "date", "price")
+dataTable <- data.frame(matrix(nrow = 0,ncol = 3))
+colnames(dataTable)=c("origin", "date", "price")
+dataTable %>% write.csv(., "data.csv")
 ```
 
 ```{r include=F}
@@ -79,6 +80,7 @@ dataTable %<>% rbind(.,priceUpdate("AXIGON", date, price))
 dataTable %<>% .[rev(order(.$date)),]
 
 dataTable %>% write.csv(.,"data.csv")
+dataTable
 ```
 
 ## ERNEKS
