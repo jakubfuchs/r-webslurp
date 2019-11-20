@@ -4,7 +4,7 @@ library(askpass)
 RESPONSE_REASON_OK = "OK"
 RESPONSE_REASON_FAIL = "Proxy Authentication Reguired" 
 
-# atomic; mutate by '<<-' in functions as arg
+# atomic; mutate by '<<-' in functions
 atom_ResponseStatus = NULL;
 
 getResponseStatus <-function() {
@@ -33,7 +33,7 @@ proxyValidation <- function() {
     print("Connection Successful")
   } else {
     if (getResponseReason() == RESPONSE_REASON_FAIL) {
-      # set proxy validation based on IEsettings/Widnows (it's corporate right?)
+      # set proxy validation based on IEsettings/Windows (it's corporate right?)
       # ask for password
       set_config(
         use_proxy(url = curl::ie_get_proxy_for_url(),
