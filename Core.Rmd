@@ -1,6 +1,9 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  word_document: default
+  pdf_document: default
+  html_notebook: default
 ---
 
 ```{r}
@@ -36,14 +39,14 @@ updatePriceInto <- function(table) {
 }
 ```
 
-```{r include=F}
+```{r eval=FALSE, include=FALSE}
 ## init datalog
 dataTable <- data.frame(matrix(nrow = 0,ncol = 3))
 colnames(dataTable)=c("origin", "date", "price")
 dataTable %>% write.csv(., "data.csv")
 ```
 
-```{r include=F}
+```{r eval=FALSE, include=FALSE}
 ## ADJUST by MISSING DATA 
 dataTable
 missingData <- data.frame(origin = "AXIGON",
@@ -81,19 +84,29 @@ dataTable %<>% .[rev(order(.$date)),]
 
 dataTable %>% write.csv(.,"data.csv")
 dataTable
+
+
 ```
 
+```{r eval=FALSE, include=FALSE}
+devtools <- function() {
+  
+  rm(list = ls())
+  
+}
+```
+
+
+```{r eval=FALSE, include=FALSE}
 ## ERNEKS
-```{r}
 URL <- "http://www.erneks.cz/tankovaci-karta/shell-fix"
 pg <- read_html(URL)
 
 html_nodes(pg, "div.AREA_advantages")
 ```
 
-
+```{r eval=FALSE, include=FALSE}
 ## Tank ONO
-```{r}
 URL <- "http://www.tank-ono.cz/cz/index.php?page=cenik"
 pg <- read_html(URL)
 
