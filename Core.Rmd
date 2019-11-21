@@ -88,7 +88,7 @@ dataTable
 
 ```
 
-```{r eval=FALSE, include=FALSE}
+```{r include=FALSE}
 devtools <- function() {
   
   rm(list = ls())
