@@ -20,10 +20,13 @@ tryCatch(CorporateSourced(), error = function(e) source("Corporate.R"))
 ```
 
 ```{r}
+# set sys
+Sys.setlocale("LC_TIME","English")
+
 # init table
 initPriceTable <-  function() {
   table <- data.frame(matrix(nrow = 0,ncol = 4))
-  colnames(table)=c("name", "date", "price", "origin")
+  colnames(table)=c("name", "date","day","price", "origin")
   table
 }
 dataTable <-  initPriceTable()
@@ -42,6 +45,7 @@ updatePriceInto <- function(table) {
   function(name, date, price, origin) {
     tableNow <-  filter(table, table$name==name)
     dataNow <- data.frame(name, date, price)
+    dataNow$day %<>%  weekdays(.$date)
     
     if (date %in% tableNow$date) { 
       currentPrices <- tableNow %>% filter(.,.$date==date) %>% .$price

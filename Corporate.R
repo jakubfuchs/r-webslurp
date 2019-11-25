@@ -1,8 +1,10 @@
-library(httr)
-library(askpass)
-
 # for source reference handling
-CorporateSourced <- function() "Corporate is sourced"
+CorporateSourced <- function(){
+  library(askpass)
+  library(httr)
+  "Corporate is sourced"
+} 
+CorporateSourced()
 
 RESPONSE_REASON_OK = "OK"
 RESPONSE_REASON_FAIL = "Proxy Authentication Required" 
