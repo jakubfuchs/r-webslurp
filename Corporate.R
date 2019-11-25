@@ -2,23 +2,32 @@ library(httr)
 library(askpass)
 
 RESPONSE_REASON_OK = "OK"
-RESPONSE_REASON_FAIL = "Proxy Authentication Reguired" 
+RESPONSE_REASON_FAIL = "Proxy Authentication Required" 
+RESPONSE_REASON_ERR = "Error"
 
 # atomic; mutate by '<<-' in functions
 atom_ResponseStatus = NULL;
 
 getResponseStatus <-function() {
   url="http://www.google.com"
-  http_status(GET(url))
+  response = tryCatch(GET(URL),error = function(e) NULL, finally = NULL)
+  if (!is.null(response)) {
+    http_status(response)
+  } else {
+    response = c();
+    response$reason = "Error"
+    response
+  }
 }
 
 isResponse <- function() {
-  response = getResponseStatus()
-  if (response$reason == RESPONSE_REASON_OK) {
-    atom_ResponseStatus <<- response
+  status = getResponseStatus()
+  
+  if (status$reason == RESPONSE_REASON_OK) {
+    atom_ResponseStatus <<- status
     TRUE
   } else {
-    atom_ResponseStatus <<- response
+    atom_ResponseStatus <<- status
     FALSE
   }
 }
@@ -28,21 +37,28 @@ getResponseReason <- function() {
   return(atom_ResponseStatus$reason)
 }
 
+setProxy <- function(prompt = "Pass for Proxy:") {
+  # set proxy validation based on IEsettings/Windows (it's corporate right?)
+  # ask for password
+  # TODO flow control recursion, info if proxy found...
+  pass = askpass(prompt)
+  set_config(
+    use_proxy(url = curl::ie_get_proxy_for_url(),
+              # Windows env property
+              username = Sys.getenv("USERNAME"),
+              password = pass))
+}
+
 proxyValidation <- function() {
-  if (getResponseReason() == RESPONSE_REASON_OK) {
+  reason = getResponseReason()
+  if (reason == RESPONSE_REASON_OK) {
     print("Connection Successful")
-  } else {
-    if (getResponseReason() == RESPONSE_REASON_FAIL) {
-      # set proxy validation based on IEsettings/Windows (it's corporate right?)
-      # ask for password
-      set_config(
-        use_proxy(url = curl::ie_get_proxy_for_url(),
-                  # Windows property
-                  username = Sys.getenv("USERNAME"),
-                  pass = askpass("Connecion failed. Password for proxi.")))
-    }
+    return()
+  } else if (reason == RESPONSE_REASON_FAIL) {
+    setProxy("Connecion failed on proxi. Password for user authorization:")
+  } else if (reason == RESPONSE_REASON_ERR) {
+    setProxy("Connection Error. Set proxi password and try again:")
   }
-  isResponse()
 }
 
 ## DEV BLOCK
@@ -52,6 +68,5 @@ devblock <- function() {
   
   proxyValidation();
   atom_ResponseStatus
-  
 }
 

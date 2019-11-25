@@ -7,6 +7,9 @@ output:
 ---
 
 ```{r}
+# Clean up first
+rm(list = ls())
+
 library(httr)
 library(rvest)
 library(purrr)
@@ -14,9 +17,8 @@ library(stringr)
 library(magrittr)
 library(dplyr)
 
-
-# Utils
-rm(list = ls())
+source("Corporate.R")
+proxyValidation()
 
 # update into closure function
 updatePriceInto <- function(table) {
@@ -61,12 +63,15 @@ dataTable
 ```{r}
 URL <- "https://www.axigon.cz"
 
-pg <- read_html(URL)
+
+# get page
+pg <- read_html(GET(URL))
 
 # load datalog
 dataTable <- read.csv("data.csv")
 dataTable$X=NULL
 dataTable$date %<>% as.Date
+
 
 # slurp price form web
 price <- html_nodes(pg, "div.hero__remark") %>%
