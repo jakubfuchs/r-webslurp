@@ -14,7 +14,7 @@ getResponseStatus <-function() {
 
 isResponse <- function() {
   response = getResponseStatus()
-  if (response$reason == "OK") {
+  if (response$reason == RESPONSE_REASON_OK) {
     atom_ResponseStatus <<- response
     TRUE
   } else {
@@ -39,8 +39,7 @@ proxyValidation <- function() {
         use_proxy(url = curl::ie_get_proxy_for_url(),
                   # Windows property
                   username = Sys.getenv("USERNAME"),
-                  pass = askpass("Connecion failed. Password for proxi."))
-      )
+                  pass = askpass("Connecion failed. Password for proxi.")))
     }
   }
   isResponse()
