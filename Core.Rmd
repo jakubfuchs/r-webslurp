@@ -81,6 +81,7 @@ addMissingData <- function(name,
 }
 
 comment <- function() {
+  ## DEV block
   
   addMissingData(name = "AXIGON",
                  date = "2019-11-19",
@@ -129,7 +130,8 @@ dataTable
 ```
 
 ```{r include=FALSE}
-devblock <- function() {
+comment <- function() {
+  # dev block
   
   rm(list = ls())
   dataTable
