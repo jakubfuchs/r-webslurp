@@ -30,6 +30,7 @@ dataTable <-  initPriceTable()
 
 # load datalog
 dataTable <- read.csv("data.csv")
+dataTable$X = NULL
 dataTable$date %<>% as.Date
 
 # check proxy
