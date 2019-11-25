@@ -56,6 +56,10 @@ updatePriceInto <- function(table) {
       if (price %in% currentPrices) {
         print(paste("[Warrning] Zaznam jiz existuje:", date,">", fuel, ":", price, "/", origin, "/"))
         NULL
+      } else {
+        # TODO d-1 zmena....
+        print("zmena d-1")
+        NULL
       }
     } else {
       print(paste(date, "Nova cena", fuel, ":", price))
