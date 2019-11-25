@@ -1,6 +1,9 @@
 library(httr)
 library(askpass)
 
+# for source reference handling
+CorporateSourced <- function() "Corporate is sourced"
+
 RESPONSE_REASON_OK = "OK"
 RESPONSE_REASON_FAIL = "Proxy Authentication Required" 
 RESPONSE_REASON_ERR = "Error"
@@ -9,6 +12,7 @@ RESPONSE_REASON_ERR = "Error"
 atom_ResponseStatus = NULL;
 
 getResponseStatus <-function() {
+  # TODO better tryCatch...
   url="http://www.google.com"
   response = tryCatch(GET(URL),error = function(e) NULL, finally = NULL)
   if (!is.null(response)) {
@@ -40,7 +44,7 @@ getResponseReason <- function() {
 setProxy <- function(prompt = "Pass for Proxy:") {
   # set proxy validation based on IEsettings/Windows (it's corporate right?)
   # ask for password
-  # TODO flow control recursion, info if proxy found...
+  # TODO improve - flow control recursion, info if proxy found...
   pass = askpass(prompt)
   set_config(
     use_proxy(url = curl::ie_get_proxy_for_url(),

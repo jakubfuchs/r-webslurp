@@ -7,9 +7,6 @@ output:
 ---
 
 ```{r}
-# Clean up first
-rm(list = ls())
-
 library(httr)
 library(rvest)
 library(purrr)
@@ -17,20 +14,38 @@ library(stringr)
 library(magrittr)
 library(dplyr)
 
-source("Corporate.R")
+# source only if needed
+tryCatch(CorporateSourced(), error = function(e) source("Corporate.R"))
+
+```
+
+```{r}
+# init table
+initPriceTable <-  function() {
+  table <- data.frame(matrix(nrow = 0,ncol = 4))
+  colnames(table)=c("name", "date", "price", "origin")
+  table
+}
+dataTable <-  initPriceTable()
+
+# load datalog
+dataTable <- read.csv("data.csv")
+dataTable$date %<>% as.Date
+
+# check proxy
 proxyValidation()
 
+# UTILITIES
 # update into closure function
 updatePriceInto <- function(table) {
-  function(name, date, price) {
-    tableNow <-  filter(table, table$origin==name)
-    origin <- name
-    dataNow <- data.frame(origin, date, price)
+  function(name, date, price, origin) {
+    tableNow <-  filter(table, table$name==name)
+    dataNow <- data.frame(name, date, price)
     
     if (date %in% tableNow$date) { 
       currentPrices <- tableNow %>% filter(.,.$date==date) %>% .$price
       if (price %in% currentPrices) {
-        print(paste("[Warrning] Zaznam jiz existuje:", date,">", price))
+        print(paste("[Warrning] Zaznam jiz existuje:", date,">", price, "/", origin, "/"))
         NULL
       }
     } else {
@@ -39,38 +54,25 @@ updatePriceInto <- function(table) {
     } 
   } 
 }
-```
 
-```{r eval=FALSE, include=FALSE}
-## init datalog
-dataTable <- data.frame(matrix(nrow = 0,ncol = 3))
-colnames(dataTable)=c("origin", "date", "price")
-dataTable %>% write.csv(., "data.csv")
-```
+# update
 
-```{r eval=FALSE, include=FALSE}
-## ADJUST by MISSING DATA 
-dataTable
-missingData <- data.frame(origin = "AXIGON",
-                          date = "2019-11-13",
-                          price = 25.53)
-dataTable %<>% rbind(.,missingData)
-dataTable
-
+# ADJUST by MISSING DATA
+addMissingData <- function(name, date, price, origin = "manual_input", export = F) {
+  missingData <- data.frame(name, date, price, origin)
+  dataTable %<>%  rbind(.,missingData)
+  dataTable %<>% .[rev(order(.$date)),]
+  if (export) dataTable %>% write.csv(.,"data.csv")
+  dataTable
+}
 ```
 
 ## AXIGON
 ```{r}
 URL <- "https://www.axigon.cz"
 
-
 # get page
 pg <- read_html(GET(URL))
-
-# load datalog
-dataTable <- read.csv("data.csv")
-dataTable$X=NULL
-dataTable$date %<>% as.Date
 
 
 # slurp price form web
@@ -84,7 +86,7 @@ date <- Sys.Date() %>% as.Date
 
 # update and save
 priceUpdate <- updatePriceInto(dataTable)
-dataTable %<>% rbind(.,priceUpdate("AXIGON", date, price))
+dataTable %<>% rbind(.,priceUpdate("AXIGON", date, price, "webslurp"))
 dataTable %<>% .[rev(order(.$date)),]
 
 dataTable %>% write.csv(.,"data.csv")
@@ -94,9 +96,10 @@ dataTable
 ```
 
 ```{r include=FALSE}
-devtools <- function() {
+devblock <- function() {
   
   rm(list = ls())
+  dataTable
   
 }
 ```
