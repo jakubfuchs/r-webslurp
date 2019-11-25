@@ -34,15 +34,13 @@ initPriceTable <-  function() {
                     "origin")
   table
 }
+# create price table
 dataTable <-  initPriceTable()
 
 # load datalog
 dataTable <- read.csv("data.csv")
 dataTable$X = NULL
 dataTable$date %<>% as.Date
-
-# check proxy
-proxyValidation()
 
 # UTILITIES
 # update into closure function
@@ -98,9 +96,11 @@ comment <- function() {
 ```{r}
 URL <- "https://www.axigon.cz"
 
+# check proxy
+proxyValidation()
+
 # get page
 pg <- read_html(GET(URL))
-
 
 # slurp price form web
 price <- html_nodes(pg, "div.hero__remark") %>%
