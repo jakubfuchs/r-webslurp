@@ -25,12 +25,14 @@ Sys.setlocale("LC_TIME","English")
 
 # init table
 initPriceTable <-  function() {
-  table <- data.frame(matrix(nrow = 0,ncol = 6))
+  table <- data.frame(matrix(nrow = 0, ncol = 8))
   colnames(table)=c("name",
                     "date",
+                    "week",
                     "day",
                     "fuel",
                     "price",
+                    "week_rank",
                     "origin")
   table
 }
@@ -47,9 +49,16 @@ dataTable$date %<>% as.Date
 updatePriceInto <- function(table) {
   # as a closure, to check against provided table
   # does not mutate provided table (has to be 'rbind' to include in data)
-  function(name, date, day, fuel, price, origin) {
+  function(name, date, fuel, price, origin) {
     tableNow <-  filter(table, table$name==name)
-    dataNow <- data.frame(name, date, day, fuel, price, origin)
+    dataNow <- data.frame(name,
+                          date,
+                          week = format(date,"%Y/w%W"),
+                          day = weekdays(date),
+                          fuel,
+                          price,
+                          week_rank = format(date,"%Y%w"),
+                          origin)
     
     if (date %in% tableNow$date) { 
       currentPrices <- tableNow %>% filter(.,.$date==date,.$fuel==fuel) %>% .$price
@@ -69,16 +78,15 @@ updatePriceInto <- function(table) {
 }
 
 # ADJUST DATA
-addMissingData <- function(name,
-                           date,
-                           day = weekdays(as.Date(date)),
-                           fuel,
-                           price,
-                           origin = "manual_input",
-                           export = F) {
-  missingData <- data.frame(name, date, day, fuel, price, origin)
-  missingData$X = NULL
-  dataTable %<>%  rbind(.,missingData)
+addMissingData <- function(name, date, fuel, price, origin = "manual_input", export = F) {
+  
+  missingData <- updatePriceInto(dataTable)
+  
+  dataTable %<>%  rbind(.,missingData(name,
+                                      date,
+                                      fuel,
+                                      price,
+                                      origin))
   dataTable %<>% .[rev(order(.$date)),]
   if (export) dataTable %>% write.csv(.,"data.csv")
   dataTable
@@ -88,7 +96,7 @@ comment <- function() {
   ## DEV block
   
   addMissingData(name = "AXIGON",
-                 date = "2019-11-19",
+                 date = as.Date("2019-11-26"),
                  fuel = "Diesel",
                  price = 25.28,
                  export = T)
@@ -120,7 +128,6 @@ date <- Sys.Date() %>% as.Date
 priceUpdate <- updatePriceInto(dataTable)
 dataTable %<>% rbind(.,priceUpdate(name = "AXIGON",
                                    date = date,
-                                   day = weekdays(date),
                                    fuel = "Diesel",
                                    price = price,
                                    origin = "webslurp"))
