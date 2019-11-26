@@ -25,10 +25,16 @@ Sys.setlocale("LC_TIME","English")
 
 # init table
 initPriceTable <-  function() {
-  table <- data.frame(matrix(nrow = 0,ncol = 5))
-  colnames(table)=c("name", "date","day","price", "origin")
+  table <- data.frame(matrix(nrow = 0,ncol = 6))
+  colnames(table)=c("name",
+                    "date",
+                    "day",
+                    "fuel",
+                    "price",
+                    "origin")
   table
 }
+# create price table
 dataTable <-  initPriceTable()
 
 # load datalog
@@ -36,39 +42,58 @@ dataTable <- read.csv("data.csv")
 dataTable$X = NULL
 dataTable$date %<>% as.Date
 
-# check proxy
-proxyValidation()
-
 # UTILITIES
 # update into closure function
 updatePriceInto <- function(table) {
-  function(name, date, price, origin) {
+  # as a closure, to check against provided table
+  # does not mutate provided table (has to be 'rbind' to include in data)
+  function(name, date, day, fuel, price, origin) {
     tableNow <-  filter(table, table$name==name)
-    dataNow <- data.frame(name, date, price)
-    dataNow$day <-  weekdays(dataNow$date)
+    dataNow <- data.frame(name, date, day, fuel, price, origin)
     
     if (date %in% tableNow$date) { 
-      currentPrices <- tableNow %>% filter(.,.$date==date) %>% .$price
+      currentPrices <- tableNow %>% filter(.,.$date==date,.$fuel==fuel) %>% .$price
       if (price %in% currentPrices) {
-        print(paste("[Warrning] Zaznam jiz existuje:", date,">", price, "/", origin, "/"))
+        print(paste("[Warrning] Zaznam jiz existuje:", date,">", fuel, ":", price, "/", origin, "/"))
+        NULL
+      } else {
+        # TODO d-1 zmena....
+        print("zmena d-1")
         NULL
       }
     } else {
-      print(paste(date, "Nova cena", price))
+      print(paste(date, "Nova cena", fuel, ":", price))
       dataNow
     } 
   } 
 }
 
-# update
-
-# ADJUST by MISSING DATA
-addMissingData <- function(name, date, price, origin = "manual_input", export = F) {
-  missingData <- data.frame(name, date, price, origin)
+# ADJUST DATA
+addMissingData <- function(name,
+                           date,
+                           day = weekdays(as.Date(date)),
+                           fuel,
+                           price,
+                           origin = "manual_input",
+                           export = F) {
+  missingData <- data.frame(name, date, day, fuel, price, origin)
+  missingData$X = NULL
   dataTable %<>%  rbind(.,missingData)
   dataTable %<>% .[rev(order(.$date)),]
   if (export) dataTable %>% write.csv(.,"data.csv")
   dataTable
+}
+
+comment <- function() {
+  ## DEV block
+  
+  addMissingData(name = "AXIGON",
+                 date = "2019-11-19",
+                 fuel = "Diesel",
+                 price = 25.28,
+                 export = T)
+  
+  
 }
 ```
 
@@ -76,9 +101,11 @@ addMissingData <- function(name, date, price, origin = "manual_input", export = 
 ```{r}
 URL <- "https://www.axigon.cz"
 
+# check proxy
+proxyValidation()
+
 # get page
 pg <- read_html(GET(URL))
-
 
 # slurp price form web
 price <- html_nodes(pg, "div.hero__remark") %>%
@@ -91,7 +118,13 @@ date <- Sys.Date() %>% as.Date
 
 # update and save
 priceUpdate <- updatePriceInto(dataTable)
-dataTable %<>% rbind(.,priceUpdate("AXIGON", date, price, "webslurp"))
+dataTable %<>% rbind(.,priceUpdate(name = "AXIGON",
+                                   date = date,
+                                   day = weekdays(date),
+                                   fuel = "Diesel",
+                                   price = price,
+                                   origin = "webslurp"))
+
 dataTable %<>% .[rev(order(.$date)),]
 
 dataTable %>% write.csv(.,"data.csv")
@@ -101,7 +134,8 @@ dataTable
 ```
 
 ```{r include=FALSE}
-devblock <- function() {
+comment <- function() {
+  # dev block
   
   rm(list = ls())
   dataTable

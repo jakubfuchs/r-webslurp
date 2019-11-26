@@ -68,7 +68,8 @@ proxyValidation <- function() {
 }
 
 ## DEV BLOCK
-devblock <- function() {
+comment <- function() {
+  # dev block
   
   rm(list = ls())
   

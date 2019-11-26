@@ -4,3 +4,5 @@
 *.html
 *.docx
 *.pdf
+.ipynb_*
+PoC*
