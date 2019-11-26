@@ -25,7 +25,7 @@ Sys.setlocale("LC_TIME","English")
 
 # init table
 initPriceTable <-  function() {
-  table <- data.frame(matrix(nrow = 0,ncol = 4))
+  table <- data.frame(matrix(nrow = 0,ncol = 5))
   colnames(table)=c("name", "date","day","price", "origin")
   table
 }
@@ -45,7 +45,7 @@ updatePriceInto <- function(table) {
   function(name, date, price, origin) {
     tableNow <-  filter(table, table$name==name)
     dataNow <- data.frame(name, date, price)
-    dataNow$day %<>%  weekdays(.$date)
+    dataNow$day <-  weekdays(dataNow$date)
     
     if (date %in% tableNow$date) { 
       currentPrices <- tableNow %>% filter(.,.$date==date) %>% .$price
