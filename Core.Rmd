@@ -57,7 +57,7 @@ updatePriceInto <- function(table) {
                           day = weekdays(date),
                           fuel,
                           price,
-                          week_rank = format(date,"%Y%w"),
+                          week_rank = format(date-1,"%Y%W"),
                           origin)
     
     if (date %in% tableNow$date) { 
