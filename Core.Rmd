@@ -24,20 +24,20 @@ tryCatch(CorporateSourced(), error = function(e) source("Corporate.R"))
 Sys.setlocale("LC_TIME","English")
 
 # init table
+# not needed, replaced with data load from csv
 initPriceTable <-  function() {
-  table <- data.frame(matrix(nrow = 0, ncol = 8))
-  colnames(table)=c("name",
-                    "date",
-                    "week",
-                    "day",
-                    "fuel",
-                    "price",
-                    "week_rank",
-                    "origin")
+  cols <- c("name",
+            "date",
+            "week",
+            "day",
+            "fuel",
+            "price",
+            "week_rank",
+            "origin")
+  table <- data.frame(matrix(nrow = 0, ncol = length(cols)))
+  colnames(table)=cols
   table
 }
-# create price table
-dataTable <-  initPriceTable()
 
 # load datalog
 dataTable <- read.csv("data.csv")
@@ -45,7 +45,10 @@ dataTable$X = NULL
 dataTable$date %<>% as.Date
 
 # UTILITIES
-# update into closure function
+# get current date
+today <- Sys.Date() %>% as.Date
+
+# update into is a closure function
 updatePriceInto <- function(table) {
   # as a closure, to check against provided table
   # does not mutate provided table (has to be 'rbind' to include in data)
@@ -114,20 +117,21 @@ proxyValidation()
 
 # get page
 pg <- read_html(GET(URL))
+```
 
-# slurp price form web
+```{r}
+# slurp price from web
 price <- html_nodes(pg, "div.hero__remark") %>%
   html_text %>%
   str_extract(.,"\\d....") %>%
   str_replace(.,"[,]","\\.") %>% 
   as.double
-# get current date
-date <- Sys.Date() %>% as.Date
+
 
 # update and save
 priceUpdate <- updatePriceInto(dataTable)
 dataTable %<>% rbind(.,priceUpdate(name = "AXIGON",
-                                   date = date,
+                                   date = today,
                                    fuel = "Diesel",
                                    price = price,
                                    origin = "webslurp"))
@@ -150,20 +154,65 @@ comment <- function() {
 }
 ```
 
-
+## ERNEKS
 ```{r eval=FALSE, include=FALSE}
 ## ERNEKS
 URL <- "http://www.erneks.cz/tankovaci-karta/shell-fix"
-pg <- read_html(URL)
+proxyValidation()
 
-html_nodes(pg, "div.AREA_advantages")
+pg <- read_html(GET(URL))
 ```
 
 ```{r eval=FALSE, include=FALSE}
-## Tank ONO
-URL <- "http://www.tank-ono.cz/cz/index.php?page=cenik"
-pg <- read_html(URL)
-
-html_nodes(pg, "table.cenik")[2] %>% html_nodes(., "tr") %>% html_text %>% .[4]
+html_nodes(pg, "div.AREA_advantages")
 ```
+
+## TANK ONO
+```{r}
+## Tank ONO
+URL <- "http://m.tank-ono.cz/cz/index.php?page=cenik"
+pg <- read_html(GET(URL))
+
+```
+
+```{r}
+extractDivItems <- function(div) {
+  # Creates closure around div class name
+  # takes min and max rows index for result
+  function(rowMin, rowMax) {
+    result <- html_nodes(pg, div) %>%
+           html_text %>%
+           .[rowMax:rowMin] %>%
+           # remove new-line, return, spaces
+           gsub("[\r\n ]", "", .) %>% 
+           data.frame %>%
+           mutate_all(as.character)
+    result
+  }
+}
+
+tonoPrices <- extractDivItems("div.divprice")
+tonoGNames <- extractDivItems("div.divprgw")
+tonoDNames <- extractDivItems("div.divprbw")
+
+tonoPL <- bind_cols(bind_rows(tonoGNames(1,3),
+                                     tonoDNames(1,3)),
+                           tonoPrices(1,6))
+
+
+tonoPL %<>% `colnames<-`(.,c("fuel","price"))
+tonoPL$price %<>% as.double
+tonoPL$price <-  tonoPL$price / 121
+tonoPL$name = "TankOno"
+tonoPL$date = today
+tonoPL$origin = "webslurp"
+
+
+# TODO join the main dataTable
+
+tonoPL
+
+```
+
+
 
