@@ -156,7 +156,32 @@ dataTable %>% write.csv(.,"data.csv")
 dataTable
 
 
+
 ```
+
+```{r eval = FALSE, include = FALSE}
+# ADD external data
+# TODO fn to set correct form for rbind
+# TODO to check what is in data during import
+
+library(readxl)
+dataNow <- read_excel("external/bslurp.xlsx", sheet = "Diesel")
+dataNow %<>% select(.,c(Date,`Axigon List price`))
+dataNow %<>% `colnames<-`(.,c("date", "price"))
+dataNow$date %<>%  as.Date
+dataNow$price %<>% round2
+dataNow$day = weekdays(dataNow$date)
+dataNow$vendor = "AXIGON"
+dataNow$fuel = "Diesel"
+dataNow$week_rank = format(dataNow$date,"%Y%W")
+dataNow$week = week = format(dataNow$date,"%Y/w%W")
+dataNow$origin = "importXLS"
+
+newDataTable <- rbind(dataTable,dataNow)
+newDataTable %>% .[rev(order(.$date)),]
+#newDataTable %>% write.csv(.,"data.csv")
+```
+
 
 ```{r include=FALSE}
 comment <- function() {
