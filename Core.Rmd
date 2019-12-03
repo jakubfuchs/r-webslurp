@@ -1,9 +1,9 @@
 ---
 title: "R Notebook"
 output:
+  html_notebook: default
   pdf_document: default
   word_document: default
-  html_notebook: default
 ---
 
 ```{r}
@@ -76,8 +76,8 @@ updatePriceInto <- function(table) {
                           price,
                           week_rank = format(date-1,"%Y%W"),
                           origin)
-    
-    if (date %in% tableNow$date) { 
+
+    if (date %in% tableNow$date) {
       currentPrices <- tableNow %>% filter(.,.$date==date,.$fuel==fuel) %>% .$price
       if (price %in% currentPrices) {
         print(paste("[Warrning] Zaznam jiz existuje:", date,">", fuel, ":", price, "/", origin, "/"))
@@ -90,15 +90,15 @@ updatePriceInto <- function(table) {
     } else {
       print(paste(date, "Nova cena", fuel, ":", price))
       dataNow
-    } 
-  } 
+    }
+  }
 }
 
 # ADJUST DATA
 addMissingData <- function(vendor, date, fuel, price, origin = "manual_input", export = F) {
-  
+
   missingData <- updatePriceInto(dataTable)
-  
+
   dataTable %<>%  rbind(.,missingData(vendor,
                                       date,
                                       fuel,
@@ -111,14 +111,14 @@ addMissingData <- function(vendor, date, fuel, price, origin = "manual_input", e
 
 comment <- function() {
   ## DEV block
-  
+
   addMissingData(vendor = "AXIGON",
                  date = as.Date("2019-11-26"),
                  fuel = "Diesel",
                  price = 25.28,
                  export = T)
-  
-  
+
+
 }
 ```
 
@@ -138,7 +138,7 @@ pg <- read_html(GET(URL))
 price <- html_nodes(pg, "div.hero__remark") %>%
   html_text %>%
   str_extract(.,"\\d....") %>%
-  str_replace(.,"[,]","\\.") %>% 
+  str_replace(.,"[,]","\\.") %>%
   as.double
 
 
@@ -186,10 +186,10 @@ newDataTable %>% .[rev(order(.$date)),]
 ```{r include=FALSE}
 comment <- function() {
   # dev block
-  
+
   rm(list = ls())
   dataTable
-  
+
 }
 ```
 
@@ -223,7 +223,7 @@ extractDivItems <- function(div) {
            html_text %>%
            .[rowMax:rowMin] %>%
            # remove new-line, return, spaces
-           gsub("[\r\n ]", "", .) %>% 
+           gsub("[\r\n ]", "", .) %>%
            data.frame %>%
            mutate_all(as.character)
     result
@@ -234,9 +234,10 @@ tonoPrices <- extractDivItems("div.divprice")
 tonoGNames <- extractDivItems("div.divprgw")
 tonoDNames <- extractDivItems("div.divprbw")
 
-tonoPL <- bind_cols(bind_rows(tonoGNames(1,3),
+tonoPL_withVAT <- bind_cols(bind_rows(tonoGNames(1,3),
                                      tonoDNames(1,3)),
                     bind_rows(tonoPrices(1,3),tonoPrices(4,6)))
+tonoPL <- tonoPL_withVAT
 
 
 tonoPL %<>% `colnames<-`(.,c("fuel","price"))
@@ -249,9 +250,6 @@ tonoPL$origin = "webslurp"
 
 # TODO join the main dataTable
 
-tonoPL
+tonoPL_withVAT
 
 ```
-
-
-
