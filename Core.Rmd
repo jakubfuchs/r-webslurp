@@ -234,9 +234,10 @@ tonoPrices <- extractDivItems("div.divprice")
 tonoGNames <- extractDivItems("div.divprgw")
 tonoDNames <- extractDivItems("div.divprbw")
 
-tonoPL <- bind_cols(bind_rows(tonoGNames(1,3),
+tonoPL_withVAT <- bind_cols(bind_rows(tonoGNames(1,3),
                                      tonoDNames(1,3)),
                     bind_rows(tonoPrices(1,3),tonoPrices(4,6)))
+tonoPL <- tonoPL_withVAT
 
 
 tonoPL %<>% `colnames<-`(.,c("fuel","price"))
@@ -249,7 +250,7 @@ tonoPL$origin = "webslurp"
 
 # TODO join the main dataTable
 
-tonoPL
+tonoPL_withVAT
 
 ```
 
