@@ -1,9 +1,9 @@
 ---
 title: "R Notebook"
 output:
-  word_document: default
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r}
