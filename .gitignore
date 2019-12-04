@@ -6,4 +6,5 @@
 *.pdf
 .ipynb_*
 PoC*
+webscrap.Rproj
 external
