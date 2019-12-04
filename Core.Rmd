@@ -6,7 +6,7 @@ output:
   word_document: default
 ---
 
-```{r echo=F}
+```{r echo=F, include=F}
 library(httr)
 library(rvest)
 library(purrr)
@@ -19,7 +19,7 @@ tryCatch(CorporateSourced(), error = function(e) source("Corporate.R"))
 
 ```
 
-```{r}
+```{r echo=F, include=F}
 # set sys
 Sys.setlocale("LC_TIME","English")
 
@@ -62,12 +62,13 @@ dataTable$date %<>% as.Date
 today <- Sys.Date() %>% as.Date
 
 # update into is a closure function
-# TODO extend the "value exist" check with fuel & name
+# TODO extend the "value exist" check with fuel & vendor
 updatePriceInto <- function(table) {
   # as a closure, to check against provided table
   # does not mutate provided table (has to be 'rbind' to include in data)
   function(vendor, date, fuel, price, origin) {
-    tableNow <-  filter(table, table$vendor==vendor)
+    vendorNow <- vendor # warrning, has to provide new var, table$vendor == vendor would not work in filter
+    tableNow <- filter(table, table$vendor==vendorNow)  
     dataNow <- data.frame(vendor,
                           date,
                           week = format(date,"%Y/w%W"),
@@ -80,7 +81,7 @@ updatePriceInto <- function(table) {
     if (date %in% tableNow$date) {
       currentPrices <- tableNow %>% filter(.,.$date==date,.$fuel==fuel) %>% .$price
       if (price %in% currentPrices) {
-        print(paste("[Warrning] Zaznam jiz existuje:", date,">", fuel, ":", price, "/", origin, "/"))
+        print(paste0("[Warrning] Zaznam jiz existuje: ", date," > ", fuel, " : ", price, " /", origin, "/"))
         NULL
       } else {
         # TODO d-1 zmena....
@@ -121,19 +122,21 @@ comment <- function() {
 
 }
 ```
+```{r}
+# check proxy/connection
+proxyValidation()
+```
+
 
 ## AXIGON
 ```{r}
 URL <- "https://www.axigon.cz"
 
-# check proxy
-proxyValidation()
-
 # get page
 pg <- read_html(GET(URL))
 ```
 
-```{r}
+```{r echo=F}
 # slurp price from web
 price <- html_nodes(pg, "div.hero__remark") %>%
   html_text %>%
@@ -151,11 +154,7 @@ dataTable %<>% rbind(.,priceUpdate(vendor = "AXIGON",
                                    origin = "webslurp"))
 
 dataTable %<>% .[rev(order(.$date)),]
-
 dataTable %>% write.csv(.,"data.csv")
-dataTable
-
-
 
 ```
 
@@ -183,7 +182,7 @@ newDataTable %>% .[rev(order(.$date)),]
 ```
 
 
-```{r include=FALSE}
+```{r echo=F,include=FALSE}
 comment <- function() {
   # dev block
 
@@ -193,11 +192,9 @@ comment <- function() {
 }
 ```
 
-## ERNEKS
 ```{r eval=FALSE, include=FALSE}
 ## ERNEKS
 URL <- "http://www.erneks.cz/tankovaci-karta/shell-fix"
-proxyValidation()
 
 pg <- read_html(GET(URL))
 ```
@@ -214,7 +211,7 @@ pg <- read_html(GET(URL))
 
 ```
 
-```{r}
+```{r echo=F}
 extractDivItems <- function(div) {
   # Creates closure around div class name
   # takes min and max rows index for result
@@ -254,15 +251,55 @@ tonoPL_withVAT
 
 ```
 
-## twin trans
+## Twin Trans
 ```{r echo=F}
 URL <- "http://www.twintrans.cz"
 pg <- read_html(GET(URL))
 
-priceList <- html_nodes(pg, "tr") %>% html_text
-priceListJET <- priceList[2] %>% strsplit(., "[\n]") %>% .[[1]] %>% noquote %>% gsub("[ ]", "",.)
-priceListJET[1]
-priceListJET[2]
-priceListJET[3]
 ```
+
+```{r echo=F}
+priceList <- html_nodes(pg, "tr") %>% html_text
+priceListJET <- priceList[2] %>%
+                strsplit(., "[\n]") %>%
+                .[[1]] %>%
+                noquote %>%
+                gsub("[ ]", "", .) %>% gsub("Kč/l", "", .) %>% gsub(",",".",.)
+
+# rbind dataTable
+if (priceListJET[1] == "JETA-1" && priceListJET[3] == "bezSPD(10.95)") {
+  jetPrice <- as.double(priceListJET[2])
+  update <- updatePriceInto(dataTable)
+  dataTable %<>% rbind(., update(vendor = "TwinTrans",
+                                date = today,
+                                fuel = "JET",
+                                price = jetPrice,
+                                origin = "webslurp"))
+  
+  dataTable %<>% .[rev(order(.$date)),]
+  dataTable %>% write.csv(.,"data.csv")
+} else {
+  "ERROR, JET conditions does not match"
+}
+
+comment <- function() {
+  ## Dev block
+  update <- updatePriceInto(dataTable)
+  update(vendor = "TwinTrans",
+         date = today,
+         fuel = "JET",
+         price = jetPrice,
+         origin = "webslurp")
+  table <- dataTable 
+  table <- filter(table, table$vendor=="TwinTrans")
+  table$date
+  (today %in% table$date)
+}
+
+```
+## DATA
+```{r}
+dataTable
+```
+
 
