@@ -6,7 +6,7 @@ output:
   word_document: default
 ---
 
-```{r}
+```{r echo=F}
 library(httr)
 library(rvest)
 library(purrr)
@@ -253,3 +253,16 @@ tonoPL$origin = "webslurp"
 tonoPL_withVAT
 
 ```
+
+## twin trans
+```{r echo=F}
+URL <- "http://www.twintrans.cz"
+pg <- read_html(GET(URL))
+
+priceList <- html_nodes(pg, "tr") %>% html_text
+priceListJET <- priceList[2] %>% strsplit(., "[\n]") %>% .[[1]] %>% noquote %>% gsub("[ ]", "",.)
+priceListJET[1]
+priceListJET[2]
+priceListJET[3]
+```
+
