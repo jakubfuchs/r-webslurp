@@ -17,25 +17,12 @@ library(dplyr)
 # source only if needed
 tryCatch(CorporateSourced(), error = function(e) source("Corporate.R"))
 
-```
-
-```{r echo=F, include=F}
 # set sys
 Sys.setlocale("LC_TIME","English")
 
-# Rounding
-roundTo  <- function(precision) {
-    # via Closure
-    function(x) {
-        fctr = 10 ^ precision
-        round(x * fctr) / fctr
-    }
-}
+```
 
-round1 <- roundTo(1)
-round2 <- roundTo(2)
-round3 <- roundTo(3)
-
+```{r echo=F, include=F}
 # init table
 # not needed, replaced with data load from csv
 initPriceTable <-  function() {
@@ -61,6 +48,19 @@ dataTable$date %<>% as.Date
 # get current date
 today <- Sys.Date() %>% as.Date
 
+# Rounding
+roundTo  <- function(precision) {
+    # via Closure
+    function(x) {
+        fctr = 10 ^ precision
+        round(x * fctr) / fctr
+    }
+}
+
+round1 <- roundTo(1)
+round2 <- roundTo(2)
+round3 <- roundTo(3)
+
 # update into is a closure function
 # TODO extend the "value exist" check with fuel & vendor
 updatePriceInto <- function(table) {
@@ -68,7 +68,8 @@ updatePriceInto <- function(table) {
   # does not mutate provided table (has to be 'rbind' to include in data)
   function(vendor, date, fuel, price, origin) {
     vendorNow <- vendor # warrning, has to provide new var, table$vendor == vendor would not work in filter
-    tableNow <- filter(table, table$vendor==vendorNow)  
+    fuelNow <- fuel
+    tableNow <- filter(table, table$vendor==vendorNow, table$fuel==fuelNow)  
     dataNow <- data.frame(vendor,
                           date,
                           week = format(date,"%Y/w%W"),
@@ -85,7 +86,7 @@ updatePriceInto <- function(table) {
         NULL
       } else {
         # TODO d-1 zmena....
-        print("zmena d-1")
+        print("zmena d-1 ")
         NULL
       }
     } else {
@@ -130,15 +131,15 @@ proxyValidation()
 
 ## AXIGON
 ```{r}
-URL <- "https://www.axigon.cz"
+URL_AXI <- "https://www.axigon.cz"
 
 # get page
-pg <- read_html(GET(URL))
+pgAxi <- read_html(GET(URL_AXI))
 ```
 
 ```{r echo=F}
 # slurp price from web
-price <- html_nodes(pg, "div.hero__remark") %>%
+price <- html_nodes(pgAxi, "div.hero__remark") %>%
   html_text %>%
   str_extract(.,"\\d....") %>%
   str_replace(.,"[,]","\\.") %>%
@@ -152,9 +153,6 @@ dataTable %<>% rbind(.,priceUpdate(vendor = "AXIGON",
                                    fuel = "Diesel",
                                    price = price,
                                    origin = "webslurp"))
-
-dataTable %<>% .[rev(order(.$date)),]
-dataTable %>% write.csv(.,"data.csv")
 
 ```
 
@@ -194,20 +192,20 @@ comment <- function() {
 
 ```{r eval=FALSE, include=FALSE}
 ## ERNEKS
-URL <- "http://www.erneks.cz/tankovaci-karta/shell-fix"
+URL_ERN <- "http://www.erneks.cz/tankovaci-karta/shell-fix"
 
-pg <- read_html(GET(URL))
+pgErn <- read_html(GET(URL_ERN))
 ```
 
 ```{r eval=FALSE, include=FALSE}
-html_nodes(pg, "div.AREA_advantages")
+html_nodes(pgErn, "div.AREA_advantages")
 ```
 
 ## TANK ONO
 ```{r}
 ## Tank ONO
-URL <- "http://m.tank-ono.cz/cz/index.php?page=cenik"
-pg <- read_html(GET(URL))
+URL_TONO <- "http://m.tank-ono.cz/cz/index.php?page=cenik"
+pgTono <- read_html(GET(URL_TONO))
 
 ```
 
@@ -216,7 +214,7 @@ extractDivItems <- function(div) {
   # Creates closure around div class name
   # takes min and max rows index for result
   function(rowMin, rowMax) {
-    result <- html_nodes(pg, div) %>%
+    result <- html_nodes(pgTono, div) %>%
            html_text %>%
            .[rowMax:rowMin] %>%
            # remove new-line, return, spaces
@@ -236,30 +234,45 @@ tonoPL_withVAT <- bind_cols(bind_rows(tonoGNames(1,3),
                     bind_rows(tonoPrices(1,3),tonoPrices(4,6)))
 tonoPL <- tonoPL_withVAT
 
-
 tonoPL %<>% `colnames<-`(.,c("fuel","price"))
 tonoPL$price %<>% as.double
 tonoPL$price <- round2(tonoPL$price / 121)
 tonoPL$vendor = "TankOno"
 tonoPL$date = today
 tonoPL$origin = "webslurp"
-
+target <- c("DIESEL", "NATURAL98", "NATURAL95")
+tonoPL %<>% filter(., fuel %in% target)
 
 # TODO join the main dataTable
+tonoUpdate <- updatePriceInto(dataTable)
 
-tonoPL_withVAT
+for(i in 1:nrow(tonoPL)) {
+  item = tonoPL[i,]
+  dataTable <- rbind(dataTable, tonoUpdate(vendor = "TankOno",
+                                           date = item$date,
+                                           fuel = item$fuel,
+                                           price = item$price,
+                                           origin = "webslurp"))
+}
 
+comment <-  function() {
+  #Dev block=
+  "NATURAL95" %in% tonoPL$fuel
+  "NATURAL98" %in% tonoPL$fuel
+  (tonoPL %>% filter(., .$fuel=="DIESEL"))
+  
+}
 ```
 
 ## Twin Trans
 ```{r echo=F}
-URL <- "http://www.twintrans.cz"
-pg <- read_html(GET(URL))
+URL_TTRANS <- "http://www.twintrans.cz"
+pgTtrans<- read_html(GET(URL))
 
 ```
 
 ```{r echo=F}
-priceList <- html_nodes(pg, "tr") %>% html_text
+priceList <- html_nodes(pgTtrans, "tr") %>% html_text
 priceListJET <- priceList[2] %>%
                 strsplit(., "[\n]") %>%
                 .[[1]] %>%
@@ -276,8 +289,6 @@ if (priceListJET[1] == "JETA-1" && priceListJET[3] == "bezSPD(10.95)") {
                                 price = jetPrice,
                                 origin = "webslurp"))
   
-  dataTable %<>% .[rev(order(.$date)),]
-  dataTable %>% write.csv(.,"data.csv")
 } else {
   "ERROR, JET conditions does not match"
 }
@@ -299,7 +310,8 @@ comment <- function() {
 ```
 ## DATA
 ```{r}
-dataTable
+dataTable %<>% .[rev(order(.$date,rev(.$vendor))),]
+dataTable %>% head(.,7)
+
+dataTable %>% write.csv(.,"data.csv")
 ```
-
-
