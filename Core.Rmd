@@ -86,7 +86,7 @@ updatePriceInto <- function(table) {
         NULL
       } else {
         # TODO d-1 zmena....
-        print("zmena d-1 ")
+        print(paste("[Attention] zmena existujici ceny", date, fuel, price))
         NULL
       }
     } else {
@@ -310,8 +310,8 @@ comment <- function() {
 ```
 ## DATA
 ```{r}
-dataTable %<>% .[rev(order(.$date,rev(.$vendor))),]
-dataTable %>% head(.,7)
+dataTable %<>% .[rev(order(.$date,.$vendor)),]
+dataTable %>% head(.,14)
 
 dataTable %>% write.csv(.,"data.csv")
 ```
