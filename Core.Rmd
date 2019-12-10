@@ -255,6 +255,8 @@ for(i in 1:nrow(tonoPL)) {
                                            origin = "webslurp"))
 }
 
+tonoPL_withVAT
+
 comment <-  function() {
   #Dev block=
   "NATURAL95" %in% tonoPL$fuel
