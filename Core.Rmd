@@ -255,7 +255,7 @@ for(i in 1:nrow(tonoPL)) {
                                            origin = "webslurp"))
 }
 
-tonoPL_withVAT
+knitr::kable(tonoPL_withVAT %<>% `colnames<-`(c("Fuel","P_w_VAT")))
 
 comment <-  function() {
   #Dev block=
@@ -311,9 +311,9 @@ comment <- function() {
 
 ```
 ## DATA
-```{r}
+```{r echo=F}
 dataTable %<>% .[rev(order(.$date,.$vendor)),]
-dataTable %>% head(.,14)
+knitr::kable(dataTable %>% head(.,21))
 
 dataTable %>% write.csv(.,"data.csv")
 ```
