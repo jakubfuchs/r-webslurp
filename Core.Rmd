@@ -122,8 +122,6 @@ comment <- function() {
 
 
 }
-```
-```{r}
 # check proxy/connection
 proxyValidation()
 ```
