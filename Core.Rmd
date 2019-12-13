@@ -313,5 +313,6 @@ comment <- function() {
 dataTable %<>% .[rev(order(.$date,.$vendor)),]
 knitr::kable(dataTable %>% head(.,21))
 
+# data Serilization
 dataTable %>% write.csv(.,"data.csv")
 ```
