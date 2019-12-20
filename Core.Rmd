@@ -6,13 +6,14 @@ output:
   word_document: default
 ---
 
-```{r echo=F, include=F}
+```{r echo=F, include=F, warning=FALSE}
 library(httr)
 library(rvest)
 library(purrr)
 library(stringr)
 library(magrittr)
 library(dplyr)
+library(knitr)
 
 # source only if needed
 tryCatch(CorporateSourced(), error = function(e) source("Corporate.R"))
@@ -24,7 +25,6 @@ Sys.setlocale("LC_TIME","English")
 
 ```{r echo=F, include=F}
 # init table
-# not needed, replaced with data load from csv
 initPriceTable <-  function() {
   cols <- c("vendor",
             "date",
@@ -62,7 +62,6 @@ round2 <- roundTo(2)
 round3 <- roundTo(3)
 
 # update into is a closure function
-# TODO extend the "value exist" check with fuel & vendor
 updatePriceInto <- function(table) {
   # as a closure, to check against provided table
   # does not mutate provided table (has to be 'rbind' to include in data)
@@ -207,7 +206,7 @@ pgTono <- read_html(GET(URL_TONO))
 
 ```
 
-```{r echo=F}
+```{r echo=F, warning=FALSE}
 extractDivItems <- function(div) {
   # Creates closure around div class name
   # takes min and max rows index for result
@@ -253,7 +252,7 @@ for(i in 1:nrow(tonoPL)) {
                                            origin = "webslurp"))
 }
 
-knitr::kable(tonoPL_withVAT %<>% `colnames<-`(c("Fuel","P_w_VAT")))
+kable(tonoPL_withVAT %<>% `colnames<-`(c("Fuel","P_w_VAT")))
 
 comment <-  function() {
   #Dev block=
