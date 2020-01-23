@@ -316,4 +316,5 @@ knitr::kable(dataTable %>% head(.,21))
 
 # data Serilization
 dataTable %>% write.csv(.,"data.csv")
+dataTable %>% head(., 5) %>% View
 ```
