@@ -15,8 +15,8 @@ atom_ResponseStatus = NULL;
 
 getResponseStatus <-function() {
   # TODO better tryCatch...
-  url="http://www.google.com"
-  response = tryCatch(GET(URL),error = function(e) NULL, finally = NULL)
+  uri="http://www.google.com"
+  response = tryCatch(GET(uri), error = function(e) NULL, finally = NULL)
   if (!is.null(response)) {
     http_status(response)
   } else {

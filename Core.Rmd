@@ -157,6 +157,7 @@ dataTable %<>% rbind(.,priceUpdate(vendor = "AXIGON",
 
 ```{r eval = FALSE, include = FALSE}
 # ADD external data
+# TODO net dewelop, one time usage
 # TODO fn to set correct form for rbind
 # TODO to check what is in data during import
 
@@ -268,7 +269,7 @@ comment <-  function() {
 ## Twin Trans
 ```{r echo=F}
 URL_TTRANS <- "http://www.twintrans.cz"
-pgTtrans<- read_html(GET(URL))
+pgTtrans<- read_html(GET(URL_TTRANS))
 
 ```
 
