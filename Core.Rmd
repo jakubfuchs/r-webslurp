@@ -62,7 +62,7 @@ updatePriceInto <- function(table) {
   # as a closure, to check against provided table
   # does not mutate provided table (has to be 'rbind' to include in data)
   function(vendor, date, fuel, price, origin) {
-    vendorNow <- vendor # warrning, has to provide new var, table$vendor == vendor would not work in filter
+    vendorNow <- vendor # warning, has to provide new var, table$vendor == vendor would not work in filter
     fuelNow <- fuel
     tableNow <- filter(table, table$vendor==vendorNow, table$fuel==fuelNow)  
     dataNow <- data.frame(vendor,
@@ -77,7 +77,7 @@ updatePriceInto <- function(table) {
     if (date %in% tableNow$date) {
       currentPrices <- tableNow %>% filter(.,.$date==date,.$fuel==fuel) %>% .$price
       if (price %in% currentPrices) {
-        print(paste0("[Warrning] Zaznam jiz existuje: ", date," > ", fuel, " : ", price, " /", origin, "/"))
+        print(paste0("[Warning] Zaznam jiz existuje: ", date," > ", fuel, " : ", price, " /", origin, "/"))
         NULL
       } else {
         # TODO d-1 zmena....
@@ -151,7 +151,7 @@ dataTable %<>% rbind(.,priceUpdate(vendor = "AXIGON",
 
 ```{r eval = FALSE, include = FALSE}
 # ADD external data
-# TODO net dewelop, one time usage
+# TODO net develop, one time usage
 # TODO fn to set correct form for rbind
 # TODO to check what is in data during import
 
@@ -309,7 +309,7 @@ comment <- function() {
 dataTable %<>% .[rev(order(.$date,.$vendor)),]
 knitr::kable(dataTable %>% head(.,21))
 
-# data Serilization
+# data Serialization
 dataTable %>% write.csv(.,"data.csv")
 dataTable %>% head(., 5) %>% View
 ```
