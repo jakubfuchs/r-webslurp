@@ -15,7 +15,7 @@ library(knitr)
 tryCatch(CorporateSourced(), error = function(e) source("Corporate.R"))
 
 # set sys
-Sys.setlocale("LC_TIME","English")
+# Sys.setlocale("LC_TIME","English")
 
 ```
 

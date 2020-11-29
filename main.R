@@ -1,2 +1,2 @@
 library(rmarkdown)
-render("Core.RmD")
+render("Core.Rmd")
