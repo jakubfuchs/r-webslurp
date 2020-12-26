@@ -1,3 +1,3 @@
 # r-webslurp
 
-Scripts in R for exctracting prices from public web into a price table (csv export).
+Scripts in R for exctracting prices from public webs into a price table csv export.
