@@ -1,0 +1,81 @@
+---
+title: "Spot On"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+library(rmarkdown)
+library(magrittr)
+library(dplyr)
+library(tidyverse)
+library(knitr)
+knitr::opts_chunk$set(fig.align = "left")
+```
+
+```{r date, echo=FALSE}
+dateNow <- Sys.Date()
+Today <- strftime(Sys.Date(), format = "%Y-%m-%d")
+The_Week <- strftime(dateNow, format = "%Y/w%V")
+dfDate <- data.frame(Today, The_Week)
+kable(dfDate,
+      col.names = c("Today's", "This Week"),
+      align = "r")
+```
+
+
+```{r load-data, include=FALSE}
+v.raw <- read.csv("data.csv")
+v.raw$X = NULL
+v <- v.raw %>%
+ select(., "vendor", "origin", "week", "date", "day", "fuel", "price")
+```
+
+### Tank Ono
+
+```{r tono, include=FALSE}
+tono.diesel <- v %>% filter(. , .$vendor == "TankOno" & .$fuel == "DIESEL")
+tono.diesel$PriceVAT = round(tono.diesel$price * 1.21, 1)
+tono.ba95 <- v %>% filter(. , .$vendor == "TankOno" & .$fuel == "NATURAL95")
+tono.ba95$PriceVAT = round(tono.ba95$price * 1.21, 1)
+```
+
+> Gasoline BA95
+
+```{r tono-ba95, echo=F}
+kable(head(tono.ba95, 7))
+ggplot(data = head(tono.ba95, 30),
+       aes(week, PriceVAT,
+           label = PriceVAT)
+       ) + geom_text(aes(label=PriceVAT),
+                     hjust=-0.2, vjust=1
+                     ) + geom_line() + geom_point()
+```
+
+> Diesel
+
+```{r tono-diesel, echo=F}
+kable(head(tono.diesel, 7))
+
+ggplot(data = head(tono.diesel, 30),
+       aes(week, PriceVAT,
+           label = PriceVAT)) + geom_text(aes(label=PriceVAT), hjust=-0.2, vjust=1) + geom_line() + geom_point()
+```
+
+### Axigon
+```{r axigon, include=FALSE}
+axigon.diesel <- v %>% filter(. , .$vendor == "AXIGON" & .$fuel == "Diesel")
+axigon.diesel$PriceVAT = round(axigon.diesel$price * 1.21, 1)
+```
+
+> Diesel
+
+```{r axigon-diesel, echo=F}
+kable(head(axigon.diesel, 7))
+
+ggplot(data = head(axigon.diesel, 30),
+       aes(week, PriceVAT,
+           label = PriceVAT)) + geom_text(aes(label=PriceVAT), hjust=-0.2, vjust=1) + geom_line() + geom_point()
+```
+```{r dev-block, include=F}
+v.raw %>% print %>% head
+```
