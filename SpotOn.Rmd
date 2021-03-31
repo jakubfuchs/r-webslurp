@@ -10,6 +10,14 @@ library(dplyr)
 library(tidyverse)
 library(knitr)
 knitr::opts_chunk$set(fig.align = "left")
+
+
+# for CZ chars
+if (.Platform$OS.type == 'windows') {
+  Sys.setlocale(category = 'LC_ALL','English_United States.1250')
+} else {
+  Sys.setlocale(category = 'LC_ALL','en_US.UTF-8')
+}
 ```
 
 ```{r date, echo=FALSE}
@@ -76,6 +84,62 @@ ggplot(data = head(axigon.diesel, 30),
        aes(week, price,
            label = price)) + geom_text(aes(label=price), hjust=-0.2, vjust=1) + geom_line() + geom_point()
 ```
+
+### UIC
+```{r uic, include=FALSE}
+url <- "https://www.unipetrolrpa.cz/CS/NabidkaProduktu/rafinerske-produkty/uic.csv"
+
+# read csv, select cols
+uic.table  <- read.csv(url, sep = ";", encoding = "UTF-8") %>% select(., DATUM, PALIVO, UIC) 
+
+# rename & format cols
+uic.table %<>% `colnames<-`(., c("date", "fuel", "price"))
+uic.table$date %<>% as.Date
+
+# add week
+uic.table$week = format(uic.table$date, "%Y/w%W")
+
+# add day
+uic.table$day = weekdays(uic.table$date)
+
+# add origins
+uic.table$vendor = "UIC"
+uic.table$origin = "web/csv"
+
+# rearange
+uic.table %<>% select(vendor, origin, week, date, day, fuel, price)
+
+# convert and add price(lit) % priceVat
+uic.table$price = round(uic.table$price / 1000, 2)
+uic.table$priceVAT = round(uic.table$price * 1.21, 2)
+
+# set fuel specific tables
+uic.diesel  <- uic.table %>% filter(., .$fuel == "Motorová nafta")
+uic.ba95  <- uic.table %>% filter(., .$fuel == "Benzin BA95")
+```
+
+> Diesel
+
+```{r uic-diesel, echo=F, fig.width = 9, fig.height = 5 }
+kable(head(uic.diesel, 7))
+
+ggplot(data = head(uic.diesel, 33),
+       aes(week, price,
+           label = price)) + geom_text(aes(label=price), hjust=-0.2, vjust=1) + geom_line() + geom_point()
+```
+
+> Gasoline BA95
+
+```{r uic-ba95, echo=F, fig.width = 9, fig.height = 5 }
+kable(head(uic.ba95, 7))
+
+ggplot(data = head(uic.ba95, 33),
+       aes(week, price,
+           label = price)) + geom_text(aes(label=price), hjust=-0.2, vjust=1) + geom_line() + geom_point()
+```
+
 ```{r dev-block, include=F}
-v.raw %>% print %>% head
+print("dev block")
+kable(head(uic.table, 14))
+uic.table %>% head(., 14)
 ```
