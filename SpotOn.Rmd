@@ -41,7 +41,7 @@ tono.ba95$PriceVAT = round(tono.ba95$price * 1.21, 1)
 
 > Gasoline BA95
 
-```{r tono-ba95, echo=F}
+```{r tono-ba95, echo=F, fig.width = 9, fig.height = 5 }
 kable(head(tono.ba95, 7))
 ggplot(data = head(tono.ba95, 30),
        aes(week, PriceVAT,
@@ -53,7 +53,7 @@ ggplot(data = head(tono.ba95, 30),
 
 > Diesel
 
-```{r tono-diesel, echo=F}
+```{r tono-diesel, echo=F, fig.width = 9, fig.height = 5 }
 kable(head(tono.diesel, 7))
 
 ggplot(data = head(tono.diesel, 30),
@@ -69,12 +69,12 @@ axigon.diesel$PriceVAT = round(axigon.diesel$price * 1.21, 1)
 
 > Diesel
 
-```{r axigon-diesel, echo=F}
+```{r axigon-diesel, echo=F, fig.width = 9, fig.height = 5 }
 kable(head(axigon.diesel, 7))
 
 ggplot(data = head(axigon.diesel, 30),
-       aes(week, PriceVAT,
-           label = PriceVAT)) + geom_text(aes(label=PriceVAT), hjust=-0.2, vjust=1) + geom_line() + geom_point()
+       aes(week, price,
+           label = price)) + geom_text(aes(label=price), hjust=-0.2, vjust=1) + geom_line() + geom_point()
 ```
 ```{r dev-block, include=F}
 v.raw %>% print %>% head
