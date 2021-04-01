@@ -73,6 +73,7 @@ ggplot(data = head(tono.diesel, 30),
 ```{r axigon, include=FALSE}
 axigon.diesel <- v %>% filter(. , .$vendor == "AXIGON" & .$fuel == "Diesel")
 axigon.diesel$PriceVAT = round(axigon.diesel$price * 1.21, 1)
+axigon.diesel$price %<>% round(., 1)
 ```
 
 > Diesel
@@ -110,8 +111,8 @@ uic.table$origin = "web/csv"
 uic.table %<>% select(vendor, origin, week, date, day, fuel, price)
 
 # convert and add price(lit) % priceVat
-uic.table$price = round(uic.table$price / 1000, 2)
-uic.table$priceVAT = round(uic.table$price * 1.21, 2)
+uic.table$price = round(uic.table$price / 1000, 1)
+uic.table$priceVAT = round(uic.table$price * 1.21, 1)
 
 # set fuel specific tables
 uic.diesel  <- uic.table %>% filter(., .$fuel == "Motorová nafta")
