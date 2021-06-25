@@ -223,9 +223,8 @@ tonoPrices <- extractDivItems("div.divprice")
 tonoGNames <- extractDivItems("div.divprgw")
 tonoDNames <- extractDivItems("div.divprbw")
 
-tonoPL_withVAT <- bind_cols(bind_rows(tonoGNames(1,3),
-                                     tonoDNames(1,3)),
-                    bind_rows(tonoPrices(1,3),tonoPrices(4,6)))
+tonoPL_withVAT <- bind_cols(bind_rows(tonoGNames(1,4), tonoDNames(1,2)),
+                    bind_rows(tonoPrices(1,4),tonoPrices(5,6)))
 tonoPL <- tonoPL_withVAT
 
 tonoPL %<>% `colnames<-`(.,c("fuel","price"))
@@ -256,6 +255,7 @@ comment <-  function() {
   "NATURAL95" %in% tonoPL$fuel
   "NATURAL98" %in% tonoPL$fuel
   (tonoPL %>% filter(., .$fuel=="DIESEL"))
+  (tonoPL %>% filter(., .$fuel=="NATURAL98"))
   
 }
 ```

@@ -25,7 +25,7 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
-| TankOno | webslurp | 2021/w25 | 2021-06-25 | Friday    | DIESEL | 26.36 |     31.9 |
+| TankOno | webslurp | 2021/w25 | 2021-06-25 | Friday    | DIESEL | 23.55 |     28.5 |
 | TankOno | webslurp | 2021/w25 | 2021-06-23 | Wednesday | DIESEL | 26.36 |     31.9 |
 | TankOno | webslurp | 2021/w24 | 2021-06-17 | Thursday  | DIESEL | 26.36 |     31.9 |
 | TankOno | webslurp | 2021/w24 | 2021-06-15 | Tuesday   | DIESEL | 26.36 |     31.9 |
