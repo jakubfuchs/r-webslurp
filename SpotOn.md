@@ -26,12 +26,12 @@ Spot On
 | vendor  | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
 | TankOno | webslurp | 2021/w25 | 2021-06-25 | Friday    | DIESEL | 23.55 |     28.5 |
-| TankOno | webslurp | 2021/w25 | 2021-06-23 | Wednesday | DIESEL | 26.36 |     31.9 |
-| TankOno | webslurp | 2021/w24 | 2021-06-17 | Thursday  | DIESEL | 26.36 |     31.9 |
-| TankOno | webslurp | 2021/w24 | 2021-06-15 | Tuesday   | DIESEL | 26.36 |     31.9 |
-| TankOno | webslurp | 2021/w23 | 2021-06-07 | Monday    | DIESEL | 26.36 |     31.9 |
-| TankOno | webslurp | 2021/w22 | 2021-06-04 | Friday    | DIESEL | 26.36 |     31.9 |
 | TankOno | webslurp | 2021/w22 | 2021-06-02 | Wednesday | DIESEL | 23.06 |     27.9 |
+| TankOno | webslurp | 2021/w21 | 2021-05-27 | Thursday  | DIESEL | 23.06 |     27.9 |
+| TankOno | webslurp | 2021/w21 | 2021-05-25 | Tuesday   | DIESEL | 23.06 |     27.9 |
+| TankOno | webslurp | 2021/w20 | 2021-05-21 | Friday    | DIESEL | 23.06 |     27.9 |
+| TankOno | webslurp | 2021/w20 | 2021-05-17 | Monday    | DIESEL | 23.06 |     27.9 |
+| TankOno | webslurp | 2021/w19 | 2021-05-14 | Friday    | DIESEL | 23.06 |     27.9 |
 
 <img src="SpotOn_files/figure-gfm/tono-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 

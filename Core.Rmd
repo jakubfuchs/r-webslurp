@@ -276,7 +276,7 @@ priceListJET <- priceList[2] %>%
                 gsub("[ ]", "", .) %>% gsub("Kč/l", "", .) %>% gsub(",",".",.)
 
 # rbind dataTable
-if (priceListJET[1] == "JETA-1" && priceListJET[3] == "bezSPD(sazba10.95)") {
+if (priceListJET[1] == "JETA-1" && priceListJET[3] == "bezSPD(sazba9.95)") {
   jetPrice <- as.double(priceListJET[2])
   update <- updatePriceInto(dataTable)
   dataTable %<>% rbind(., update(vendor = "TwinTrans",
