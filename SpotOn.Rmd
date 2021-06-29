@@ -122,7 +122,7 @@ uic.ba95  <- uic.table %>% filter(., .$fuel == "Benzin BA95")
 > Diesel
 
 ```{r uic-diesel, echo=F, fig.width = 9, fig.height = 5 }
-kable(head(uic.diesel, 7))
+kable(head(uic.diesel, 14))
 
 ggplot(data = head(uic.diesel, 33),
        aes(week, price,
@@ -132,7 +132,7 @@ ggplot(data = head(uic.diesel, 33),
 > Gasoline BA95
 
 ```{r uic-ba95, echo=F, fig.width = 9, fig.height = 5 }
-kable(head(uic.ba95, 7))
+kable(head(uic.ba95, 14))
 
 ggplot(data = head(uic.ba95, 33),
        aes(week, price,
