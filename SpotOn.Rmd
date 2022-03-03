@@ -115,7 +115,7 @@ uic.table$price = round(uic.table$price / 1000, 1)
 uic.table$priceVAT = round(uic.table$price * 1.21, 1)
 
 # set fuel specific tables
-uic.diesel  <- uic.table %>% filter(., .$fuel == "Motorová nafta")
+uic.diesel  <- uic.table %>% filter(grepl("Motor", fuel))
 uic.ba95  <- uic.table %>% filter(., .$fuel == "Benzin BA95")
 ```
 
