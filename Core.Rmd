@@ -223,8 +223,8 @@ tonoPrices <- extractDivItems("div.divprice")
 tonoGNames <- extractDivItems("div.divprgw")
 tonoDNames <- extractDivItems("div.divprbw")
 
-tonoPL_withVAT <- bind_cols(bind_rows(tonoGNames(1,4), tonoDNames(1,2)),
-                    bind_rows(tonoPrices(1,4),tonoPrices(5,6)))
+tonoPL_withVAT <- bind_cols(bind_rows(tonoGNames(3,1), tonoDNames(2,1)),
+                    bind_rows(tonoPrices(3,1),tonoPrices(5,4)))
 tonoPL <- tonoPL_withVAT
 
 tonoPL %<>% `colnames<-`(.,c("fuel","price"))
