@@ -23,15 +23,15 @@ Spot On
 
 > Diesel
 
-| vendor  | origin   | week     | date       | day       | fuel   | price | PriceVAT |
-|:--------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
-| TankOno | webslurp | 2022/w47 | 2022-11-21 | Monday    | DIESEL | 33.47 |     40.5 |
-| TankOno | webslurp | 2022/w46 | 2022-11-19 | Saturday  | DIESEL | 33.47 |     40.5 |
-| TankOno | webslurp | 2022/w46 | 2022-11-16 | Wednesday | DIESEL | 34.30 |     41.5 |
-| TankOno | webslurp | 2022/w46 | 2022-11-14 | Monday    | DIESEL | 35.12 |     42.5 |
-| TankOno | webslurp | 2022/w45 | 2022-11-13 | Sunday    | DIESEL | 35.12 |     42.5 |
-| TankOno | webslurp | 2022/w45 | 2022-11-11 | Friday    | DIESEL | 35.95 |     43.5 |
-| TankOno | webslurp | 2022/w45 | 2022-11-10 | Thursday  | DIESEL | 35.95 |     43.5 |
+| vendor  | origin     | week     | date       | day       | fuel   | price | PriceVAT |
+|:--------|:-----------|:---------|:-----------|:----------|:-------|------:|---------:|
+| TankOno | webslurp   | 2022/w47 | 2022-11-21 | Monday    | DIESEL | 32.98 |     39.9 |
+| TankOno | correction | 2022/w46 | 2022-11-19 | Saturday  | DIESEL | 32.98 |     39.9 |
+| TankOno | webslurp   | 2022/w46 | 2022-11-16 | Wednesday | DIESEL | 34.30 |     41.5 |
+| TankOno | webslurp   | 2022/w46 | 2022-11-14 | Monday    | DIESEL | 35.12 |     42.5 |
+| TankOno | webslurp   | 2022/w45 | 2022-11-13 | Sunday    | DIESEL | 35.12 |     42.5 |
+| TankOno | webslurp   | 2022/w45 | 2022-11-11 | Friday    | DIESEL | 35.95 |     43.5 |
+| TankOno | webslurp   | 2022/w45 | 2022-11-10 | Thursday  | DIESEL | 35.95 |     43.5 |
 
 <img src="SpotOn_files/figure-gfm/tono-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
