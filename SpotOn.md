@@ -11,7 +11,7 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel      | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:----------|------:|---------:|
-| TankOno | webslurp | 2022/w47 | 2022-11-23 | Wednesday | NATURAL95 | 32.15 |     38.9 |
+| TankOno | webslurp | 2022/w47 | 2022-11-23 | Wednesday | NATURAL95 | 31.32 |     37.9 |
 | TankOno | webslurp | 2022/w47 | 2022-11-22 | Tuesday   | NATURAL95 | 32.15 |     38.9 |
 | TankOno | webslurp | 2022/w47 | 2022-11-21 | Monday    | NATURAL95 | 32.15 |     38.9 |
 | TankOno | webslurp | 2022/w46 | 2022-11-19 | Saturday  | NATURAL95 | 32.15 |     38.9 |
@@ -25,7 +25,7 @@ Spot On
 
 | vendor  | origin     | week     | date       | day       | fuel   | price | PriceVAT |
 |:--------|:-----------|:---------|:-----------|:----------|:-------|------:|---------:|
-| TankOno | webslurp   | 2022/w47 | 2022-11-23 | Wednesday | DIESEL | 32.98 |     39.9 |
+| TankOno | webslurp   | 2022/w47 | 2022-11-23 | Wednesday | DIESEL | 32.15 |     38.9 |
 | TankOno | webslurp   | 2022/w47 | 2022-11-22 | Tuesday   | DIESEL | 32.98 |     39.9 |
 | TankOno | webslurp   | 2022/w47 | 2022-11-21 | Monday    | DIESEL | 32.98 |     39.9 |
 | TankOno | correction | 2022/w46 | 2022-11-19 | Saturday  | DIESEL | 32.98 |     39.9 |
@@ -41,7 +41,7 @@ Spot On
 
 | vendor | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:-------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
-| AXIGON | webslurp | 2022/w47 | 2022-11-23 | Wednesday | Diesel |  33.5 |     40.5 |
+| AXIGON | webslurp | 2022/w47 | 2022-11-23 | Wednesday | Diesel |  33.0 |     40.0 |
 | AXIGON | webslurp | 2022/w47 | 2022-11-22 | Tuesday   | Diesel |  33.5 |     40.5 |
 | AXIGON | webslurp | 2022/w47 | 2022-11-21 | Monday    | Diesel |  34.7 |     42.0 |
 | AXIGON | webslurp | 2022/w46 | 2022-11-19 | Saturday  | Diesel |  34.7 |     42.0 |
