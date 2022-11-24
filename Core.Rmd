@@ -64,6 +64,7 @@ updatePriceInto <- function(table) {
   function(vendor, date, fuel, price, origin) {
     vendorNow <- vendor # warning, has to provide new var, table$vendor == vendor would not work in filter
     fuelNow <- fuel
+    dateNow <- date
     tableNow <- filter(table, table$vendor==vendorNow, table$fuel==fuelNow)  
     dataNow <- data.frame(vendor,
                           date,
@@ -75,17 +76,17 @@ updatePriceInto <- function(table) {
                           origin)
 
     if (date %in% tableNow$date) {
-      currentPrices <- tableNow %>% filter(.,.$date==date,.$fuel==fuel) %>% .$price
+      currentPrices <- tableNow %>% filter(.,.$date==dateNow,.$fuel==fuelNow) %>% .$price
       if (price %in% currentPrices) {
-        print(paste0("[Warning] Zaznam jiz existuje: ", date," > ", fuel, " : ", price, " /", origin, "/"))
+        print(paste0("[Warning] Zaznam jiz existuje: ", dateNow," > ", fuelNow, " : ", price, " /", origin, "/"))
         NULL
       } else {
         # TODO d-1 zmena....
-        print(paste("[Attention] zmena existujici ceny", date, fuel, price))
-        NULL
+        print(paste("[Attention] zmena existujici ceny", dateNow, fuelNow, price))
+        print("Not implemented....")
       }
     } else {
-      print(paste(date, "Nova cena", fuel, ":", price))
+      print(paste(date, "Nova cena", fuelNow, ":", price))
       dataNow
     }
   }
