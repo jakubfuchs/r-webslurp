@@ -11,7 +11,7 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel      | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:----------|------:|---------:|
-| TankOno | webslurp | 2023/w03 | 2023-01-20 | Friday    | NATURAL95 | 28.84 |     34.9 |
+| TankOno | webslurp | 2023/w03 | 2023-01-20 | Friday    | NATURAL95 | 29.34 |     35.5 |
 | TankOno | webslurp | 2023/w03 | 2023-01-19 | Thursday  | NATURAL95 | 28.84 |     34.9 |
 | TankOno | webslurp | 2023/w03 | 2023-01-18 | Wednesday | NATURAL95 | 28.84 |     34.9 |
 | TankOno | webslurp | 2023/w03 | 2023-01-17 | Tuesday   | NATURAL95 | 28.84 |     34.9 |
