@@ -3,7 +3,7 @@ Spot On
 
 |    Today’s | This Week |
 |-----------:|----------:|
-| 2023-03-17 |  2023/w11 |
+| 2023-03-25 |  2023/w12 |
 
 ### Tank Ono
 
@@ -11,13 +11,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel      | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:----------|------:|---------:|
+| TankOno | webslurp | 2023/w12 | 2023-03-25 | Saturday  | NATURAL95 | 29.67 |     35.9 |
 | TankOno | webslurp | 2023/w11 | 2023-03-17 | Friday    | NATURAL95 | 29.67 |     35.9 |
 | TankOno | webslurp | 2023/w11 | 2023-03-15 | Wednesday | NATURAL95 | 29.67 |     35.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-11 | Saturday  | NATURAL95 | 29.67 |     35.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-10 | Friday    | NATURAL95 | 29.67 |     35.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-09 | Thursday  | NATURAL95 | 29.67 |     35.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-08 | Wednesday | NATURAL95 | 29.67 |     35.9 |
-| TankOno | webslurp | 2023/w10 | 2023-03-07 | Tuesday   | NATURAL95 | 29.67 |     35.9 |
 
 <img src="SpotOn_files/figure-gfm/tono-ba95-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -25,13 +25,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
+| TankOno | webslurp | 2023/w12 | 2023-03-25 | Saturday  | DIESEL | 27.19 |     32.9 |
 | TankOno | webslurp | 2023/w11 | 2023-03-17 | Friday    | DIESEL | 27.19 |     32.9 |
 | TankOno | webslurp | 2023/w11 | 2023-03-15 | Wednesday | DIESEL | 28.02 |     33.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-11 | Saturday  | DIESEL | 28.02 |     33.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-10 | Friday    | DIESEL | 28.02 |     33.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-09 | Thursday  | DIESEL | 28.02 |     33.9 |
 | TankOno | webslurp | 2023/w10 | 2023-03-08 | Wednesday | DIESEL | 28.02 |     33.9 |
-| TankOno | webslurp | 2023/w10 | 2023-03-07 | Tuesday   | DIESEL | 28.02 |     33.9 |
 
 <img src="SpotOn_files/figure-gfm/tono-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -41,13 +41,13 @@ Spot On
 
 | vendor | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:-------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
+| AXIGON | webslurp | 2023/w12 | 2023-03-25 | Saturday  | Diesel |  28.4 |     34.4 |
 | AXIGON | webslurp | 2023/w11 | 2023-03-17 | Friday    | Diesel |  28.9 |     35.0 |
 | AXIGON | webslurp | 2023/w11 | 2023-03-15 | Wednesday | Diesel |  28.9 |     35.0 |
 | AXIGON | webslurp | 2023/w10 | 2023-03-11 | Saturday  | Diesel |  29.2 |     35.4 |
 | AXIGON | webslurp | 2023/w10 | 2023-03-10 | Friday    | Diesel |  29.2 |     35.4 |
 | AXIGON | webslurp | 2023/w10 | 2023-03-09 | Thursday  | Diesel |  29.2 |     35.4 |
 | AXIGON | webslurp | 2023/w10 | 2023-03-08 | Wednesday | Diesel |  29.2 |     35.4 |
-| AXIGON | webslurp | 2023/w10 | 2023-03-07 | Tuesday   | Diesel |  29.2 |     35.4 |
 
 <img src="SpotOn_files/figure-gfm/axigon-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -57,6 +57,12 @@ Spot On
 
 | vendor | origin  | week     | date       | day       | fuel           | price | priceVAT |
 |:-------|:--------|:---------|:-----------|:----------|:---------------|------:|---------:|
+| UIC    | web/csv | 2023/w12 | 2023-03-25 | Saturday  | Motorová nafta |  26.1 |     31.6 |
+| UIC    | web/csv | 2023/w12 | 2023-03-24 | Friday    | Motorová nafta |  26.3 |     31.8 |
+| UIC    | web/csv | 2023/w12 | 2023-03-23 | Thursday  | Motorová nafta |  26.5 |     32.1 |
+| UIC    | web/csv | 2023/w12 | 2023-03-22 | Wednesday | Motorová nafta |  26.6 |     32.2 |
+| UIC    | web/csv | 2023/w12 | 2023-03-21 | Tuesday   | Motorová nafta |  26.7 |     32.3 |
+| UIC    | web/csv | 2023/w11 | 2023-03-18 | Saturday  | Motorová nafta |  26.8 |     32.4 |
 | UIC    | web/csv | 2023/w11 | 2023-03-17 | Friday    | Motorová nafta |  26.4 |     31.9 |
 | UIC    | web/csv | 2023/w11 | 2023-03-16 | Thursday  | Motorová nafta |  26.6 |     32.2 |
 | UIC    | web/csv | 2023/w11 | 2023-03-15 | Wednesday | Motorová nafta |  27.0 |     32.7 |
@@ -65,12 +71,6 @@ Spot On
 | UIC    | web/csv | 2023/w10 | 2023-03-10 | Friday    | Motorová nafta |  27.1 |     32.8 |
 | UIC    | web/csv | 2023/w10 | 2023-03-09 | Thursday  | Motorová nafta |  27.3 |     33.0 |
 | UIC    | web/csv | 2023/w10 | 2023-03-08 | Wednesday | Motorová nafta |  27.5 |     33.3 |
-| UIC    | web/csv | 2023/w10 | 2023-03-07 | Tuesday   | Motorová nafta |  27.8 |     33.6 |
-| UIC    | web/csv | 2023/w09 | 2023-03-04 | Saturday  | Motorová nafta |  27.8 |     33.6 |
-| UIC    | web/csv | 2023/w09 | 2023-03-03 | Friday    | Motorová nafta |  28.0 |     33.9 |
-| UIC    | web/csv | 2023/w09 | 2023-03-02 | Thursday  | Motorová nafta |  27.6 |     33.4 |
-| UIC    | web/csv | 2023/w09 | 2023-03-01 | Wednesday | Motorová nafta |  27.3 |     33.0 |
-| UIC    | web/csv | 2023/w09 | 2023-02-28 | Tuesday   | Motorová nafta |  27.6 |     33.4 |
 
 <img src="SpotOn_files/figure-gfm/uic-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -78,6 +78,12 @@ Spot On
 
 | vendor | origin  | week     | date       | day       | fuel        | price | priceVAT |
 |:-------|:--------|:---------|:-----------|:----------|:------------|------:|---------:|
+| UIC    | web/csv | 2023/w12 | 2023-03-25 | Saturday  | Benzin BA95 |  29.4 |     35.6 |
+| UIC    | web/csv | 2023/w12 | 2023-03-24 | Friday    | Benzin BA95 |  29.2 |     35.3 |
+| UIC    | web/csv | 2023/w12 | 2023-03-23 | Thursday  | Benzin BA95 |  28.8 |     34.8 |
+| UIC    | web/csv | 2023/w12 | 2023-03-22 | Wednesday | Benzin BA95 |  28.7 |     34.7 |
+| UIC    | web/csv | 2023/w12 | 2023-03-21 | Tuesday   | Benzin BA95 |  28.7 |     34.7 |
+| UIC    | web/csv | 2023/w11 | 2023-03-18 | Saturday  | Benzin BA95 |  28.9 |     35.0 |
 | UIC    | web/csv | 2023/w11 | 2023-03-17 | Friday    | Benzin BA95 |  28.6 |     34.6 |
 | UIC    | web/csv | 2023/w11 | 2023-03-16 | Thursday  | Benzin BA95 |  28.6 |     34.6 |
 | UIC    | web/csv | 2023/w11 | 2023-03-15 | Wednesday | Benzin BA95 |  29.0 |     35.1 |
@@ -86,11 +92,5 @@ Spot On
 | UIC    | web/csv | 2023/w10 | 2023-03-10 | Friday    | Benzin BA95 |  29.7 |     35.9 |
 | UIC    | web/csv | 2023/w10 | 2023-03-09 | Thursday  | Benzin BA95 |  29.7 |     35.9 |
 | UIC    | web/csv | 2023/w10 | 2023-03-08 | Wednesday | Benzin BA95 |  29.6 |     35.8 |
-| UIC    | web/csv | 2023/w10 | 2023-03-07 | Tuesday   | Benzin BA95 |  29.8 |     36.1 |
-| UIC    | web/csv | 2023/w09 | 2023-03-04 | Saturday  | Benzin BA95 |  29.7 |     35.9 |
-| UIC    | web/csv | 2023/w09 | 2023-03-03 | Friday    | Benzin BA95 |  29.7 |     35.9 |
-| UIC    | web/csv | 2023/w09 | 2023-03-02 | Thursday  | Benzin BA95 |  29.5 |     35.7 |
-| UIC    | web/csv | 2023/w09 | 2023-03-01 | Wednesday | Benzin BA95 |  29.4 |     35.6 |
-| UIC    | web/csv | 2023/w09 | 2023-02-28 | Tuesday   | Benzin BA95 |  29.4 |     35.6 |
 
 <img src="SpotOn_files/figure-gfm/uic-ba95-1.png" style="display: block; margin: auto auto auto 0;" />
