@@ -26,7 +26,7 @@ Today <- strftime(Sys.Date(), format = "%Y-%m-%d")
 The_Week <- strftime(dateNow, format = "%Y/w%V")
 dfDate <- data.frame(Today, The_Week)
 kable(dfDate,
-      col.names = c("Today's", "This Week"),
+      col.names = c("Date", "Week"),
       align = "r")
 ```
 
