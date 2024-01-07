@@ -3,7 +3,7 @@ Spot On
 
 |       Date |     Week |
 |-----------:|---------:|
-| 2024-01-06 | 2024/w01 |
+| 2024-01-07 | 2024/w01 |
 
 ### Tank Ono
 
@@ -11,13 +11,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel      | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:----------|------:|---------:|
+| TankOno | webslurp | 2024/w01 | 2024-01-07 | Sunday    | NATURAL95 | 28.51 |     34.5 |
 | TankOno | webslurp | 2024/w01 | 2024-01-06 | Saturday  | NATURAL95 | 28.51 |     34.5 |
 | TankOno | webslurp | 2024/w01 | 2024-01-02 | Tuesday   | NATURAL95 | 28.02 |     33.9 |
 | TankOno | webslurp | 2024/w01 | 2024-01-01 | Monday    | NATURAL95 | 28.02 |     33.9 |
 | TankOno | webslurp | 2023/w50 | 2023-12-17 | Sunday    | NATURAL95 | 28.02 |     33.9 |
 | TankOno | webslurp | 2023/w50 | 2023-12-14 | Thursday  | NATURAL95 | 28.02 |     33.9 |
 | TankOno | webslurp | 2023/w50 | 2023-12-13 | Wednesday | NATURAL95 | 28.84 |     34.9 |
-| TankOno | webslurp | 2023/w49 | 2023-12-09 | Saturday  | NATURAL95 | 28.84 |     34.9 |
 
 <img src="SpotOn_files/figure-gfm/tono-ba95-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -25,13 +25,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
+| TankOno | webslurp | 2024/w01 | 2024-01-07 | Sunday    | DIESEL | 28.02 |     33.9 |
 | TankOno | webslurp | 2024/w01 | 2024-01-06 | Saturday  | DIESEL | 28.02 |     33.9 |
 | TankOno | webslurp | 2024/w01 | 2024-01-02 | Tuesday   | DIESEL | 28.51 |     34.5 |
 | TankOno | webslurp | 2024/w01 | 2024-01-01 | Monday    | DIESEL | 28.51 |     34.5 |
 | TankOno | webslurp | 2023/w50 | 2023-12-17 | Sunday    | DIESEL | 28.51 |     34.5 |
 | TankOno | webslurp | 2023/w50 | 2023-12-14 | Thursday  | DIESEL | 28.51 |     34.5 |
 | TankOno | webslurp | 2023/w50 | 2023-12-13 | Wednesday | DIESEL | 28.84 |     34.9 |
-| TankOno | webslurp | 2023/w49 | 2023-12-09 | Saturday  | DIESEL | 28.84 |     34.9 |
 
 <img src="SpotOn_files/figure-gfm/tono-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -41,13 +41,13 @@ Spot On
 
 | vendor | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:-------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
-| AXIGON | webslurp | 2024/w01 | 2024-01-06 | Saturday  | Diesel |  28.9 |     35.0 |
-| AXIGON | webslurp | 2024/w01 | 2024-01-02 | Tuesday   | Diesel |  28.9 |     35.0 |
-| AXIGON | webslurp | 2024/w01 | 2024-01-01 | Monday    | Diesel |  29.7 |     36.0 |
-| AXIGON | webslurp | 2023/w50 | 2023-12-17 | Sunday    | Diesel |  29.7 |     36.0 |
-| AXIGON | webslurp | 2023/w50 | 2023-12-14 | Thursday  | Diesel |  29.7 |     36.0 |
-| AXIGON | webslurp | 2023/w50 | 2023-12-13 | Wednesday | Diesel |  29.7 |     36.0 |
-| AXIGON | webslurp | 2023/w49 | 2023-12-09 | Saturday  | Diesel |  30.3 |     36.7 |
+| AXIGON | webslurp | 2024/w01 | 2024-01-07 | Sunday    | Diesel |  28.9 |       35 |
+| AXIGON | webslurp | 2024/w01 | 2024-01-06 | Saturday  | Diesel |  28.9 |       35 |
+| AXIGON | webslurp | 2024/w01 | 2024-01-02 | Tuesday   | Diesel |  28.9 |       35 |
+| AXIGON | webslurp | 2024/w01 | 2024-01-01 | Monday    | Diesel |  29.7 |       36 |
+| AXIGON | webslurp | 2023/w50 | 2023-12-17 | Sunday    | Diesel |  29.7 |       36 |
+| AXIGON | webslurp | 2023/w50 | 2023-12-14 | Thursday  | Diesel |  29.7 |       36 |
+| AXIGON | webslurp | 2023/w50 | 2023-12-13 | Wednesday | Diesel |  29.7 |       36 |
 
 <img src="SpotOn_files/figure-gfm/axigon-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
