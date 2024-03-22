@@ -3,7 +3,7 @@ Spot On
 
 |       Date |     Week |
 |-----------:|---------:|
-| 2024-03-19 | 2024/w12 |
+| 2024-03-22 | 2024/w12 |
 
 ### Tank Ono
 
@@ -11,13 +11,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel      | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:----------|------:|---------:|
+| TankOno | webslurp | 2024/w12 | 2024-03-22 | Friday    | NATURAL95 | 30.17 |     36.5 |
 | TankOno | webslurp | 2024/w12 | 2024-03-19 | Tuesday   | NATURAL95 | 30.17 |     36.5 |
 | TankOno | webslurp | 2024/w09 | 2024-02-27 | Tuesday   | NATURAL95 | 30.17 |     36.5 |
 | TankOno | webslurp | 2024/w06 | 2024-02-09 | Friday    | NATURAL95 | 29.34 |     35.5 |
 | TankOno | webslurp | 2024/w06 | 2024-02-08 | Thursday  | NATURAL95 | 29.34 |     35.5 |
 | TankOno | webslurp | 2024/w06 | 2024-02-07 | Wednesday | NATURAL95 | 29.34 |     35.5 |
 | TankOno | webslurp | 2024/w06 | 2024-02-06 | Tuesday   | NATURAL95 | 29.34 |     35.5 |
-| TankOno | webslurp | 2024/w05 | 2024-02-04 | Sunday    | NATURAL95 | 29.34 |     35.5 |
 
 <img src="SpotOn_files/figure-gfm/tono-ba95-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -25,13 +25,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
+| TankOno | webslurp | 2024/w12 | 2024-03-22 | Friday    | DIESEL | 29.67 |     35.9 |
 | TankOno | webslurp | 2024/w12 | 2024-03-19 | Tuesday   | DIESEL | 29.67 |     35.9 |
 | TankOno | webslurp | 2024/w09 | 2024-02-27 | Tuesday   | DIESEL | 30.50 |     36.9 |
 | TankOno | webslurp | 2024/w06 | 2024-02-09 | Friday    | DIESEL | 29.34 |     35.5 |
 | TankOno | webslurp | 2024/w06 | 2024-02-08 | Thursday  | DIESEL | 29.34 |     35.5 |
 | TankOno | webslurp | 2024/w06 | 2024-02-07 | Wednesday | DIESEL | 29.34 |     35.5 |
 | TankOno | webslurp | 2024/w06 | 2024-02-06 | Tuesday   | DIESEL | 29.34 |     35.5 |
-| TankOno | webslurp | 2024/w05 | 2024-02-04 | Sunday    | DIESEL | 29.34 |     35.5 |
 
 <img src="SpotOn_files/figure-gfm/tono-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -41,13 +41,13 @@ Spot On
 
 | vendor | origin   | week     | date       | day       | fuel   | price | PriceVAT |
 |:-------|:---------|:---------|:-----------|:----------|:-------|------:|---------:|
+| AXIGON | webslurp | 2024/w12 | 2024-03-22 | Friday    | Diesel |  30.7 |     37.2 |
 | AXIGON | webslurp | 2024/w12 | 2024-03-19 | Tuesday   | Diesel |  30.7 |     37.2 |
 | AXIGON | webslurp | 2024/w09 | 2024-02-27 | Tuesday   | Diesel |  31.2 |     37.8 |
 | AXIGON | webslurp | 2024/w06 | 2024-02-09 | Friday    | Diesel |  30.4 |     36.8 |
 | AXIGON | webslurp | 2024/w06 | 2024-02-08 | Thursday  | Diesel |  30.4 |     36.8 |
 | AXIGON | webslurp | 2024/w06 | 2024-02-07 | Wednesday | Diesel |  30.4 |     36.8 |
 | AXIGON | webslurp | 2024/w06 | 2024-02-06 | Tuesday   | Diesel |  30.4 |     36.8 |
-| AXIGON | webslurp | 2024/w05 | 2024-02-04 | Sunday    | Diesel |  30.3 |     36.7 |
 
 <img src="SpotOn_files/figure-gfm/axigon-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -57,6 +57,9 @@ Spot On
 
 | vendor | origin  | week     | date       | day       | fuel           | price | priceVAT |
 |:-------|:--------|:---------|:-----------|:----------|:---------------|------:|---------:|
+| UIC    | web/csv | 2024/w12 | 2024-03-22 | Friday    | Motorová nafta |  29.5 |     35.7 |
+| UIC    | web/csv | 2024/w12 | 2024-03-21 | Thursday  | Motorová nafta |  29.7 |     35.9 |
+| UIC    | web/csv | 2024/w12 | 2024-03-20 | Wednesday | Motorová nafta |  29.7 |     35.9 |
 | UIC    | web/csv | 2024/w12 | 2024-03-19 | Tuesday   | Motorová nafta |  29.6 |     35.8 |
 | UIC    | web/csv | 2024/w11 | 2024-03-16 | Saturday  | Motorová nafta |  29.5 |     35.7 |
 | UIC    | web/csv | 2024/w11 | 2024-03-15 | Friday    | Motorová nafta |  29.4 |     35.6 |
@@ -68,9 +71,6 @@ Spot On
 | UIC    | web/csv | 2024/w10 | 2024-03-07 | Thursday  | Motorová nafta |  29.6 |     35.8 |
 | UIC    | web/csv | 2024/w10 | 2024-03-06 | Wednesday | Motorová nafta |  29.6 |     35.8 |
 | UIC    | web/csv | 2024/w10 | 2024-03-05 | Tuesday   | Motorová nafta |  29.8 |     36.1 |
-| UIC    | web/csv | 2024/w09 | 2024-03-02 | Saturday  | Motorová nafta |  30.0 |     36.3 |
-| UIC    | web/csv | 2024/w09 | 2024-03-01 | Friday    | Motorová nafta |  29.9 |     36.2 |
-| UIC    | web/csv | 2024/w09 | 2024-02-29 | Thursday  | Motorová nafta |  29.9 |     36.2 |
 
 <img src="SpotOn_files/figure-gfm/uic-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -78,6 +78,9 @@ Spot On
 
 | vendor | origin  | week     | date       | day       | fuel        | price | priceVAT |
 |:-------|:--------|:---------|:-----------|:----------|:------------|------:|---------:|
+| UIC    | web/csv | 2024/w12 | 2024-03-22 | Friday    | Benzin BA95 |  30.6 |     37.0 |
+| UIC    | web/csv | 2024/w12 | 2024-03-21 | Thursday  | Benzin BA95 |  30.5 |     36.9 |
+| UIC    | web/csv | 2024/w12 | 2024-03-20 | Wednesday | Benzin BA95 |  30.4 |     36.8 |
 | UIC    | web/csv | 2024/w12 | 2024-03-19 | Tuesday   | Benzin BA95 |  30.2 |     36.5 |
 | UIC    | web/csv | 2024/w11 | 2024-03-16 | Saturday  | Benzin BA95 |  30.1 |     36.4 |
 | UIC    | web/csv | 2024/w11 | 2024-03-15 | Friday    | Benzin BA95 |  30.0 |     36.3 |
@@ -89,8 +92,5 @@ Spot On
 | UIC    | web/csv | 2024/w10 | 2024-03-07 | Thursday  | Benzin BA95 |  30.1 |     36.4 |
 | UIC    | web/csv | 2024/w10 | 2024-03-06 | Wednesday | Benzin BA95 |  30.3 |     36.7 |
 | UIC    | web/csv | 2024/w10 | 2024-03-05 | Tuesday   | Benzin BA95 |  30.5 |     36.9 |
-| UIC    | web/csv | 2024/w09 | 2024-03-02 | Saturday  | Benzin BA95 |  30.6 |     37.0 |
-| UIC    | web/csv | 2024/w09 | 2024-03-01 | Friday    | Benzin BA95 |  30.2 |     36.5 |
-| UIC    | web/csv | 2024/w09 | 2024-02-29 | Thursday  | Benzin BA95 |  30.2 |     36.5 |
 
 <img src="SpotOn_files/figure-gfm/uic-ba95-1.png" style="display: block; margin: auto auto auto 0;" />
