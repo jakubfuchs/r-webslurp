@@ -3,7 +3,7 @@ Spot On
 
 |       Date |     Week |
 |-----------:|---------:|
-| 2024-09-19 | 2024/w38 |
+| 2024-09-20 | 2024/w38 |
 
 ### Tank Ono
 
@@ -11,13 +11,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day     | fuel      | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:--------|:----------|------:|---------:|
+| TankOno | webslurp | 2024/w38 | 2024-09-20 | pátek   | NATURAL95 | 27.19 |     32.9 |
 | TankOno | webslurp | 2024/w38 | 2024-09-19 | čtvrtek | NATURAL95 | 27.19 |     32.9 |
 | TankOno | webslurp | 2024/w37 | 2024-09-12 | čtvrtek | NATURAL95 | 27.19 |     32.9 |
 | TankOno | webslurp | 2024/w37 | 2024-09-10 | úterý   | NATURAL95 | 28.02 |     33.9 |
 | TankOno | webslurp | 2024/w36 | 2024-09-07 | sobota  | NATURAL95 | 28.02 |     33.9 |
 | TankOno | webslurp | 2024/w36 | 2024-09-04 | středa  | NATURAL95 | 28.02 |     33.9 |
 | TankOno | webslurp | 2024/w36 | 2024-09-03 | úterý   | NATURAL95 | 28.84 |     34.9 |
-| TankOno | webslurp | 2024/w35 | 2024-08-30 | pátek   | NATURAL95 | 28.84 |     34.9 |
 
 <img src="SpotOn_files/figure-gfm/tono-ba95-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -25,13 +25,13 @@ Spot On
 
 | vendor  | origin   | week     | date       | day     | fuel   | price | PriceVAT |
 |:--------|:---------|:---------|:-----------|:--------|:-------|------:|---------:|
+| TankOno | webslurp | 2024/w38 | 2024-09-20 | pátek   | DIESEL | 25.54 |     30.9 |
 | TankOno | webslurp | 2024/w38 | 2024-09-19 | čtvrtek | DIESEL | 25.54 |     30.9 |
 | TankOno | webslurp | 2024/w37 | 2024-09-12 | čtvrtek | DIESEL | 25.54 |     30.9 |
 | TankOno | webslurp | 2024/w37 | 2024-09-10 | úterý   | DIESEL | 26.36 |     31.9 |
 | TankOno | webslurp | 2024/w36 | 2024-09-07 | sobota  | DIESEL | 26.36 |     31.9 |
 | TankOno | webslurp | 2024/w36 | 2024-09-04 | středa  | DIESEL | 26.36 |     31.9 |
 | TankOno | webslurp | 2024/w36 | 2024-09-03 | úterý   | DIESEL | 26.86 |     32.5 |
-| TankOno | webslurp | 2024/w35 | 2024-08-30 | pátek   | DIESEL | 26.86 |     32.5 |
 
 <img src="SpotOn_files/figure-gfm/tono-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -41,13 +41,13 @@ Spot On
 
 | vendor | origin   | week     | date       | day     | fuel   | price | PriceVAT |
 |:-------|:---------|:---------|:-----------|:--------|:-------|------:|---------:|
+| AXIGON | webslurp | 2024/w38 | 2024-09-20 | pátek   | Diesel |  27.0 |     32.7 |
 | AXIGON | webslurp | 2024/w38 | 2024-09-19 | čtvrtek | Diesel |  27.0 |     32.7 |
 | AXIGON | webslurp | 2024/w37 | 2024-09-12 | čtvrtek | Diesel |  27.3 |     33.0 |
 | AXIGON | webslurp | 2024/w37 | 2024-09-10 | úterý   | Diesel |  27.3 |     33.0 |
 | AXIGON | webslurp | 2024/w36 | 2024-09-07 | sobota  | Diesel |  27.9 |     33.8 |
 | AXIGON | webslurp | 2024/w36 | 2024-09-04 | středa  | Diesel |  27.9 |     33.8 |
 | AXIGON | webslurp | 2024/w36 | 2024-09-03 | úterý   | Diesel |  27.9 |     33.8 |
-| AXIGON | webslurp | 2024/w35 | 2024-08-30 | pátek   | Diesel |  28.1 |     34.0 |
 
 <img src="SpotOn_files/figure-gfm/axigon-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -57,6 +57,7 @@ Spot On
 
 | vendor | origin  | week     | date       | day       | fuel           | price | priceVAT |
 |:-------|:--------|:---------|:-----------|:----------|:---------------|------:|---------:|
+| UIC    | web/csv | 2024/w38 | 2024-09-20 | Friday    | Motorová nafta |  25.6 |     31.0 |
 | UIC    | web/csv | 2024/w38 | 2024-09-19 | Thursday  | Motorová nafta |  25.6 |     31.0 |
 | UIC    | web/csv | 2024/w38 | 2024-09-18 | Wednesday | Motorová nafta |  25.5 |     30.9 |
 | UIC    | web/csv | 2024/w38 | 2024-09-17 | Tuesday   | Motorová nafta |  25.5 |     30.9 |
@@ -70,7 +71,6 @@ Spot On
 | UIC    | web/csv | 2024/w36 | 2024-09-05 | Thursday  | Motorová nafta |  26.1 |     31.6 |
 | UIC    | web/csv | 2024/w36 | 2024-09-04 | Wednesday | Motorová nafta |  26.3 |     31.8 |
 | UIC    | web/csv | 2024/w36 | 2024-09-03 | Tuesday   | Motorová nafta |  26.5 |     32.1 |
-| UIC    | web/csv | 2024/w35 | 2024-08-31 | Saturday  | Motorová nafta |  26.5 |     32.1 |
 
 <img src="SpotOn_files/figure-gfm/uic-diesel-1.png" style="display: block; margin: auto auto auto 0;" />
 
@@ -78,6 +78,7 @@ Spot On
 
 | vendor | origin  | week     | date       | day       | fuel        | price | priceVAT |
 |:-------|:--------|:---------|:-----------|:----------|:------------|------:|---------:|
+| UIC    | web/csv | 2024/w38 | 2024-09-20 | Friday    | Benzin BA95 |  27.5 |     33.3 |
 | UIC    | web/csv | 2024/w38 | 2024-09-19 | Thursday  | Benzin BA95 |  27.4 |     33.2 |
 | UIC    | web/csv | 2024/w38 | 2024-09-18 | Wednesday | Benzin BA95 |  27.3 |     33.0 |
 | UIC    | web/csv | 2024/w38 | 2024-09-17 | Tuesday   | Benzin BA95 |  27.2 |     32.9 |
@@ -91,6 +92,5 @@ Spot On
 | UIC    | web/csv | 2024/w36 | 2024-09-05 | Thursday  | Benzin BA95 |  27.3 |     33.0 |
 | UIC    | web/csv | 2024/w36 | 2024-09-04 | Wednesday | Benzin BA95 |  27.6 |     33.4 |
 | UIC    | web/csv | 2024/w36 | 2024-09-03 | Tuesday   | Benzin BA95 |  27.9 |     33.8 |
-| UIC    | web/csv | 2024/w35 | 2024-08-31 | Saturday  | Benzin BA95 |  28.1 |     34.0 |
 
 <img src="SpotOn_files/figure-gfm/uic-ba95-1.png" style="display: block; margin: auto auto auto 0;" />
